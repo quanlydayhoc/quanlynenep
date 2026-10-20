@@ -17,7 +17,7 @@
   --cover:#1d3557; --cover2:#26507d; --cover-fg:#f3f6fb; --gold:#e3a72f; --gold-soft:#fbefd2;
   --accent:#2563a6; --accent-soft:#e3edf8;
   --red:#c42b2b; --red-bg:#fdecec; --pink:#c2255c; --pink-bg:#fce4ee; --green:#2b8a3e; --green-bg:#e3f5e6;
-  --amber:#b7791f; --amber-bg:#fdf3dc; --silver:#7d8896; --bronze:#a8662f;
+  --amber:#b7791f; --amber-bg:#fdf3dc; --silver:#7d8896; --bronze:#a8662f; --late:#8b0000; --late-bg:#fbe6e6; --sigbg:#ffffff;
   --shadow:0 1px 2px rgba(20,36,61,.06),0 8px 24px rgba(20,36,61,.07);
   --f-ui:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --f-head:"Lora",Georgia,"Times New Roman",serif;
@@ -27,14 +27,14 @@
   --cover:#122238; --cover2:#1a3150; --cover-fg:#eef2f8; --gold:#e8b44a; --gold-soft:#3a2f17;
   --accent:#6aa5e6; --accent-soft:#1d2f47;
   --red:#ff7b7b; --red-bg:#3a1c20; --pink:#f17aa6; --pink-bg:#3a1d2b; --green:#6fd58a; --green-bg:#173323;
-  --amber:#f0be5c; --amber-bg:#3a2e14; --silver:#aab4c0; --bronze:#d39a64;
+  --amber:#f0be5c; --amber-bg:#3a2e14; --silver:#aab4c0; --bronze:#d39a64; --late:#ff8a80; --late-bg:#3d1518; --sigbg:#f4f1ea;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1622; --paper:#161f2e; --paper2:#1b2637; --ink:#e6ebf3; --muted:#9aa7bb; --line:#2c3a50; --line2:#233046;
   --cover:#122238; --cover2:#1a3150; --cover-fg:#eef2f8; --gold:#e8b44a; --gold-soft:#3a2f17;
   --accent:#6aa5e6; --accent-soft:#1d2f47;
   --red:#ff7b7b; --red-bg:#3a1c20; --pink:#f17aa6; --pink-bg:#3a1d2b; --green:#6fd58a; --green-bg:#173323;
-  --amber:#f0be5c; --amber-bg:#3a2e14; --silver:#aab4c0; --bronze:#d39a64;
+  --amber:#f0be5c; --amber-bg:#3a2e14; --silver:#aab4c0; --bronze:#d39a64; --late:#ff8a80; --late-bg:#3d1518; --sigbg:#f4f1ea;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
 *{box-sizing:border-box}
 html,body{background:var(--bg);color:var(--ink);margin:0}
@@ -241,6 +241,75 @@ table.lst{border-collapse:collapse;width:100%;font-size:13px}
 .kpis{display:flex;gap:8px;flex-wrap:wrap}
 
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;z-index:80;box-shadow:var(--shadow);max-width:90vw}
+
+/* ===== v4: chữ đỏ đậm, TKB, chữ ký, điểm danh, cảnh báo ===== */
+.dlg.wide{max-width:1120px}
+.sdb tr.late td:not(.day):not(.buoi),.sdb tr.late:hover td:not(.day):not(.buoi){background:var(--late-bg);color:var(--late);font-weight:700}
+.sdb tr.late td.tiet{box-shadow:inset 4px 0 0 var(--late)}
+.sdb tr.late .it,.sdb tr.late .pill{color:var(--late)}
+.sdb tr.planned td:not(.day):not(.buoi):not(.tiet){background:repeating-linear-gradient(135deg,transparent 0 8px,var(--paper2) 8px 16px)}
+.tkb{display:inline-block;color:var(--muted);font-style:italic;font-size:12.5px;border:1px dashed var(--line);border-radius:6px;padding:1px 8px;background:var(--paper)}
+.legend i.tkb-i{background:repeating-linear-gradient(135deg,var(--paper) 0 3px,var(--line) 3px 5px);border:1px dashed var(--line)}
+.deln{font-size:12px;color:var(--muted);font-style:italic}
+.deln.late{color:var(--late);font-weight:700;font-style:normal}
+.sign .edit.late{color:var(--late)}
+.sign .edit{color:var(--muted);font-weight:500}
+.mon .pm{display:block;font-weight:500;font-size:11.5px;color:var(--accent)}
+.sdb tr.late .mon .pm{color:var(--late)}
+img.sigimg{display:block;max-height:30px;max-width:130px;object-fit:contain;background:var(--sigbg);border-radius:4px;padding:1px 3px;margin-bottom:2px}
+img.sigimg.inl{display:inline-block;vertical-align:middle;max-height:26px;margin:0 4px 0 0}
+.stat.late{border-color:var(--late);color:var(--late);background:var(--late-bg);font-weight:600}
+.pill.late{background:var(--late-bg);color:var(--late);border:1px solid var(--late)}
+.late-t{color:var(--late);font-weight:700}
+.hist.late{color:var(--late);border-color:var(--late)}
+.note.late-note{background:var(--late-bg);border-color:var(--late);color:var(--ink)}
+.demo-rows{display:grid;gap:8px}
+.demo{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.demo .dot{width:14px;height:14px;border-radius:50%;background:var(--ink);flex:none}
+.demo.late{background:var(--late-bg);border-color:var(--late);color:var(--late)}
+.demo.late .dot{background:var(--late)}
+/* chuông */
+.btn-c.bell{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:6px 10px}
+.btn-c.bell .badge{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;border-radius:10px;background:var(--gold);color:#1d2433;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px}
+.btn-c.bell.alert{border-color:#ff8a80;background:rgba(255,80,80,.18)}
+.btn-c.bell.alert .badge{background:#e53935;color:#fff}
+@media (prefers-reduced-motion:no-preference){.btn-c.bell.alert svg{animation:ring 1.8s ease-in-out 3}@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-14deg)}50%{transform:rotate(0)}}}
+.lst tr.new td{background:var(--gold-soft)}
+/* học sinh cần quan tâm */
+.watch{border:2px solid var(--late);background:var(--late-bg);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow)}
+.watch.ok{border:1px solid var(--green);background:var(--green-bg);box-shadow:none;padding:9px 14px}
+.watch-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.watch-h b{font-family:var(--f-head);font-size:16px;color:var(--late)}
+.watch.ok .watch-h b{color:var(--green);font-size:14px}
+.watch-h span{font-size:12.5px;color:var(--muted)}
+.watch-ic{width:26px;height:26px;border-radius:50%;background:var(--late);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.watch-rule{font-size:12px;color:var(--muted)}
+.watch-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.wcard{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.wcard.hi{border-left-color:var(--late);box-shadow:0 0 0 1px var(--late) inset}
+.wname{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.wwhy{display:flex;gap:4px;flex-wrap:wrap}
+.wwhy span{font-size:11.5px;background:var(--late-bg);color:var(--late);border-radius:6px;padding:1px 6px;font-weight:600}
+.wrec{font-size:11.5px;color:var(--muted)}
+.lst tr.flag td{background:var(--late-bg)}
+.lst tr.flag td:first-child{box-shadow:inset 4px 0 0 var(--late)}
+/* điểm danh */
+.att-sum{display:flex;gap:6px;flex-wrap:wrap}
+.att-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+.att-b{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 8px;cursor:pointer;text-align:left;font-size:13px;min-width:0}
+.att-b .no{color:var(--muted);font-size:11px;min-width:16px;font-variant-numeric:tabular-nums}
+.att-b em{margin-left:auto;font-style:normal;font-weight:800;font-size:11px}
+.att-b.P{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
+.att-b.KP{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.att-b:disabled{cursor:default}
+/* chữ ký */
+.sig-prev{height:96px;border:2px dashed var(--line);border-radius:12px;display:grid;place-items:center;background:var(--sigbg);max-width:380px}
+.sig-prev img{max-height:86px;max-width:360px;object-fit:contain}
+.sig-prev span{color:#7a8496;font-size:13px}
+.sig-pad{width:100%;max-width:560px;height:auto;aspect-ratio:14/5;border:2px solid var(--line);border-radius:12px;background:#fff;touch-action:none;cursor:crosshair}
+td.sigc img.sigimg{max-height:26px}
+.roster-ta{font-family:ui-monospace,Consolas,monospace;font-size:13px;tab-size:24;white-space:pre}
+.lst.tkbg td{text-align:center;font-size:12.5px;min-width:110px}
 .foot{max-width:1500px;margin:0 auto;padding-block:8px 24px;font-size:12px;color:var(--muted)}
 </style>
 </head>
@@ -258,6 +327,7 @@ table.lst{border-collapse:collapse;width:100%;font-size:13px}
 <nav class="nav" id="nav" hidden><div class="nav-in gut" id="navIn"></div></nav>
 
 <main class="gut">
+  <div id="srvWarn" class="wrap" style="padding-bottom:0" hidden></div>
   <section id="loginView" class="card login">
     <div class="lg-school" id="lgSchool"></div>
     <h2>Đăng nhập</h2>
@@ -298,7 +368,9 @@ table.lst{border-collapse:collapse;width:100%;font-size:13px}
 var CORE_DAYS = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
 var CORE_ROLES = { GV: 'Giáo viên', BGH: 'Ban giám hiệu', DOAN: 'Đoàn trường', XUAT: 'Được xuất báo cáo' };
 var CORE_RATE = { A: 'Tốt', B: 'Khá', C: 'Trung bình', D: 'Yếu' };
-var CORE_FIELDS = ['mon', 'tietPPCT', 'tenBai', 'vang', 'nhanXet', 'xepLoai'];
+var CORE_FIELDS = ['mon', 'phanMon', 'tietPPCT', 'tenBai', 'vang', 'nhanXet', 'xepLoai'];
+var CORE_VERSION = 4;
+var CORE_EDIT_TYPES = { sua: 'Sửa', xoa: 'Xoá', kyLai: 'Ký lại' };
 
 function coreDefaultCatalog() {
   var r = [];
@@ -340,11 +412,22 @@ function coreDefaultCfg() {
   return {
     school: { ten: 'Trường THPT Bình Thạnh Đông', so: 'Sở GD&ĐT An Giang', diaChi: 'Xã Bình Thạnh Đông, tỉnh An Giang', hieuTruong: '', biThuDoan: '', namHoc: '2026-2027', startDate: '2026-09-07', totalWeeks: 35, logo: '' },
     points: { lopBase: 100, hsBase: 100, tiet: { A: 1, B: 0, C: -2, D: -5 }, thresholds: { tot: 90, kha: 70, dat: 50 }, congBuTru: true },
+    rules: coreDefaultRules(),
     catalog: coreDefaultCatalog(),
     adminPass: 'admin123',
     accounts: [],
     classes: [],
-    students: {}
+    students: {},
+    hsInfo: {}
+  };
+}
+function coreDefaultRules() {
+  return {
+    graceHours: 24,          // sửa / xoá làm lại trong khoảng này: chữ đen; quá hạn: đỏ đậm
+    teacherDelete: true,     // giáo viên được xoá tiết mình đã ký để ký lại
+    phanMon: ['Công nghệ', 'GD Quốc phòng và An ninh', 'Hoạt động trải nghiệm, HN', 'Giáo dục địa phương', 'Tin học'],
+    watch: { on: true, days: 7, vpCount: 3, truMin: 10, kpCount: 2, scoreBelow: 80 },
+    backup: { period: 'week', keep: 12 }
   };
 }
 
@@ -375,8 +458,13 @@ function coreMergeCfg(c) {
     adminPass: coreStr(c.adminPass) || d.adminPass,
     accounts: Array.isArray(c.accounts) ? c.accounts : [],
     classes: Array.isArray(c.classes) ? c.classes : [],
-    students: c.students && typeof c.students === 'object' ? c.students : {}
+    students: c.students && typeof c.students === 'object' ? c.students : {},
+    hsInfo: c.hsInfo && typeof c.hsInfo === 'object' ? c.hsInfo : {},
+    rules: Object.assign({}, d.rules, c.rules || {})
   };
+  out.rules.watch = Object.assign({}, d.rules.watch, (c.rules && c.rules.watch) || {});
+  out.rules.backup = Object.assign({}, d.rules.backup, (c.rules && c.rules.backup) || {});
+  if (!Array.isArray(out.rules.phanMon)) out.rules.phanMon = coreList(out.rules.phanMon);
   out.points.tiet = Object.assign({}, d.points.tiet, (c.points && c.points.tiet) || {});
   out.points.thresholds = Object.assign({}, d.points.thresholds, (c.points && c.points.thresholds) || {});
   out.school.totalWeeks = Math.max(1, Math.min(52, coreNum(out.school.totalWeeks, 35)));
@@ -422,6 +510,16 @@ function coreCleanCfg(cfg, prev) {
   var st = {};
   Object.keys(c.students).forEach(function (l) { var L = coreUp(l); if (L) st[L] = coreRoster(c.students[l]); });
   c.students = st;
+  var info = {};
+  Object.keys(c.hsInfo || {}).forEach(function (l) { var L = coreUp(l); if (st[L]) info[L] = coreCleanInfo(c.hsInfo[l], st[L]); });
+  c.hsInfo = info;
+  var R = c.rules;
+  R.graceHours = Math.max(0, Math.min(720, coreNum(R.graceHours, 24)));
+  R.teacherDelete = R.teacherDelete !== false;
+  R.phanMon = (Array.isArray(R.phanMon) ? R.phanMon : coreList(R.phanMon)).map(function (x) { return coreStr(x).trim(); }).filter(function (x) { return x; }).slice(0, 40);
+  var W = R.watch;
+  R.watch = { on: W.on !== false, days: Math.max(1, Math.min(60, coreNum(W.days, 7))), vpCount: Math.max(0, coreNum(W.vpCount, 3)), truMin: Math.max(0, coreNum(W.truMin, 10)), kpCount: Math.max(0, coreNum(W.kpCount, 2)), scoreBelow: Math.max(0, coreNum(W.scoreBelow, 80)) };
+  R.backup = { period: ['off', 'day', 'week', 'month'].indexOf(R.backup.period) >= 0 ? R.backup.period : 'week', keep: Math.max(1, Math.min(60, coreNum(R.backup.keep, 12))) };
   c.adminPass = coreStr(cfg && cfg.adminPass) || prev.adminPass;
   return c;
 }
@@ -430,11 +528,40 @@ function coreRoster(list) {
   (Array.isArray(list) ? list : coreList(list)).forEach(function (n) { n = coreStr(n).replace(/\s+/g, ' ').trim(); if (n && !seen[n.toLowerCase()]) { seen[n.toLowerCase()] = 1; out.push(n); } });
   return out.slice(0, 80);
 }
+function coreCleanInfo(map, names) {
+  var out = {};
+  Object.keys(map || {}).forEach(function (n) {
+    if (names.indexOf(n) < 0) return;
+    var x = map[n] || {}, o = { ns: coreStr(x.ns).trim().slice(0, 20), ph: coreStr(x.ph).trim().slice(0, 80), sdt: coreStr(x.sdt).replace(/[^0-9+ .]/g, '').trim().slice(0, 20) };
+    if (o.ns || o.ph || o.sdt) out[n] = o;
+  });
+  return out;
+}
 function corePublicCfg(cfg, me) {
   var c = coreClone(cfg);
   c.adminPass = '';
   if (!me.admin) c.accounts = c.accounts.map(function (a) { return { id: a.id, name: a.name, mon: a.mon, lop: a.lop, cn: a.cn, roles: a.roles }; });
+  // Thông tin phụ huynh: chỉ quản trị, BGH, người được xuất báo cáo toàn trường; GVCN thấy lớp mình
+  if (!(me.admin || coreHas(me, 'BGH') || coreHas(me, 'XUAT'))) {
+    var keep = {}; if (me.cn && c.hsInfo[me.cn]) keep[me.cn] = c.hsInfo[me.cn]; c.hsInfo = keep;
+  }
   return c;
+}
+// Tiết bị sửa / xoá làm lại quá thời gian cho phép tính từ lần ký đầu → hiển thị đỏ đậm
+function coreLastEdit(e) { var ed = (e && e.edits) || []; return ed.length ? ed[ed.length - 1] : null; }
+function coreIsLate(e, rules) {
+  if (!e || !e.edits || !e.edits.length) return false;
+  var first = Date.parse(e.firstSignedAt || e.signedAt), g = coreNum(rules && rules.graceHours, 24) * 3600e3;
+  if (!isFinite(first)) return true;
+  return e.edits.some(function (x) { return Date.parse(x.at) - first > g; });
+}
+// Lấy TKB áp dụng cho một lớp ở một tuần: phiên bản có "từ tuần" lớn nhất mà ≤ tuần đang xem
+function coreTkbFor(rows, lop, week) {
+  var best = 0;
+  rows.forEach(function (r) { if (r.lop === lop && r.from <= week && r.from > best) best = r.from; });
+  var out = {};
+  if (best) rows.forEach(function (r) { if (r.lop === lop && r.from === best) out[r.thu + r.buoi + r.tiet] = { mon: r.mon, phanMon: r.phanMon, gvId: r.gvId, gvName: r.gvName }; });
+  return { from: best, slots: out };
 }
 function coreMe(a) {
   if (!a) return null;
@@ -466,8 +593,11 @@ function coreResolve(cfg, items, loai, lop, needHS) {
 function coreSig(o) {
   var a = CORE_FIELDS.map(function (k) { return coreStr(o[k]); });
   ['vp', 'cong'].forEach(function (k) { (o[k] || []).forEach(function (x) { a.push(k + ':' + x.hs + ':' + x.ma + ':' + x.ghiChu); }); });
+  (o.vangDs || []).forEach(function (x) { a.push('v:' + x.hs + ':' + x.loai); });
   return a.join('\u0001');
 }
+function coreVangText(ds) { return (ds || []).map(function (x) { return x.hs + ' (' + x.loai + ')'; }).join(', '); }
+function coreSigOk(s) { return !s || (/^data:image\/png;base64,[A-Za-z0-9+\/=]+$/.test(s) && s.length <= 32000); }
 function coreSlotKey(k) { if (!/^[0-5][SC][1-5]$/.test(coreStr(k))) coreErr('Tiết học không hợp lệ.', 'bad'); return k; }
 
 /* ---------- Các thao tác ---------- */
@@ -524,35 +654,80 @@ function coreActions(store) {
       });
     },
 
-    getWeek: function (p) { auth(p); var lw = lopWeek(p, cfg()); return store.getWeek(lw.lop, lw.week); },
+    version: function () { return CORE_VERSION; },
+    getWeek: function (p) {
+      auth(p); var lw = lopWeek(p, cfg());
+      var doc = store.getWeek(lw.lop, lw.week);
+      doc.tkb = coreTkbFor(store.tkbRows(lw.lop), lw.lop, lw.week);
+      return doc;
+    },
 
     saveSlot: function (p) {
       var u = auth(p), c = cfg(), lw = lopWeek(p, c), key = coreSlotKey(p.key);
       if (!coreCanSign(u, lw.lop)) coreErr('Bạn không dạy lớp ' + lw.lop + ' nên không được ký sổ lớp này.', 'perm');
-      var f = p.fields || {}, n = {};
+      var f = p.fields || {}, n = {}, roster = c.students[lw.lop] || [];
       CORE_FIELDS.forEach(function (k) { n[k] = coreStr(f[k]).trim().slice(0, 1500); });
       if (!/^[ABCD]?$/.test(n.xepLoai)) n.xepLoai = '';
       if (!n.mon || !n.tenBai) coreErr('Cần nhập Môn học và Tên bài.', 'bad');
       n.vp = coreResolve(c, f.vp, 'tru', lw.lop, true);
       n.cong = coreResolve(c, f.cong, 'cong', lw.lop, true);
+      var seenV = {};
+      n.vangDs = (Array.isArray(f.vangDs) ? f.vangDs : []).slice(0, 80).map(function (x) {
+        var hs = coreStr(x.hs).replace(/\s+/g, ' ').trim();
+        if (!hs || seenV[hs]) return null; seenV[hs] = 1;
+        if (roster.length && roster.indexOf(hs) < 0) coreErr('Học sinh vắng "' + hs + '" không có trong danh sách lớp.', 'bad');
+        return { hs: hs, loai: x.loai === 'KP' ? 'KP' : 'P' };
+      }).filter(function (x) { return x; });
+      if (n.vangDs.length) n.vang = coreVangText(n.vangDs);
       return store.lock(function () {
         var doc = store.getWeek(lw.lop, lw.week), prev = doc.slots[key], now = store.now(), changed = true, e;
-        if (prev) {
+        if (prev && !prev.deleted) {
           if (!u.admin && prev.gvId !== u.id) coreErr('Tiết này do ' + prev.gvName + ' ký, bạn chỉ được xem.', 'perm');
           changed = coreSig(prev) !== coreSig(n);
           if (!changed) return { changed: false, doc: doc };
           e = Object.assign({}, prev, n);
-          e.edits = (prev.edits || []).concat([{ by: u.name, at: now }]);
+          e.firstSignedAt = prev.firstSignedAt || prev.signedAt;
+          e.edits = (prev.edits || []).concat([{ by: u.name, at: now, type: 'sua' }]);
+        } else if (prev && prev.deleted) {
+          // ký lại sau khi đã xoá: giữ lịch sử, tính thời điểm ký đầu tiên
+          e = Object.assign({}, n, { gvId: u.id, gvName: u.name, signedAt: now, firstSignedAt: prev.firstSignedAt || prev.signedAt,
+            edits: (prev.edits || []).concat([{ by: u.name, at: now, type: 'kyLai' }]) });
         } else {
-          e = Object.assign({}, n, { gvId: u.id, gvName: u.name, signedAt: now, edits: [] });
+          e = Object.assign({}, n, { gvId: u.id, gvName: u.name, signedAt: now, firstSignedAt: now, edits: [] });
         }
         store.putSlot(lw.lop, lw.week, key, e);
         return { changed: changed, doc: store.getWeek(lw.lop, lw.week) };
       });
     },
     deleteSlot: function (p) {
-      admin(p); var lw = lopWeek(p, cfg()), key = coreSlotKey(p.key);
-      return store.lock(function () { store.putSlot(lw.lop, lw.week, key, null); return { changed: true, doc: store.getWeek(lw.lop, lw.week) }; });
+      var u = auth(p), c = cfg(), lw = lopWeek(p, c), key = coreSlotKey(p.key);
+      return store.lock(function () {
+        var doc = store.getWeek(lw.lop, lw.week), prev = doc.slots[key];
+        if (!prev) coreErr('Tiết này chưa được ghi.', 'bad');
+        if (u.admin && (p.hard || prev.deleted)) { store.putSlot(lw.lop, lw.week, key, null); }
+        else {
+          if (prev.deleted) coreErr('Tiết này đã được xoá.', 'bad');
+          if (!u.admin && (prev.gvId !== u.id || !c.rules.teacherDelete)) coreErr(prev.gvId !== u.id ? 'Chỉ người đã ký tiết này được xoá.' : 'Quản trị chưa cho phép giáo viên xoá tiết đã ký.', 'perm');
+          var t = Object.assign({}, prev, { deleted: true, firstSignedAt: prev.firstSignedAt || prev.signedAt, edits: (prev.edits || []).concat([{ by: u.name, at: store.now(), type: 'xoa' }]) });
+          store.putSlot(lw.lop, lw.week, key, t);
+        }
+        return { changed: true, doc: store.getWeek(lw.lop, lw.week) };
+      });
+    },
+    // Danh sách tiết bị sửa / xoá gần đây (chuông cảnh báo)
+    recentEdits: function (p) {
+      var u = auth(p), c = cfg(), days = Math.max(1, Math.min(120, coreNum(p.days, 14)));
+      var since = new Date(Date.parse(store.now()) - days * 864e5).toISOString();
+      var all = u.admin || coreHas(u, 'BGH');
+      var out = store.editedSlots(since).filter(function (x) {
+        return all || (u.cn && x.lop === u.cn) || x.e.gvId === u.id;
+      }).map(function (x) {
+        var last = coreLastEdit(x.e);
+        return { lop: x.lop, week: x.week, key: x.key, mon: x.e.mon, tenBai: x.e.tenBai, gvName: x.e.gvName, deleted: !!x.e.deleted,
+          firstSignedAt: x.e.firstSignedAt || x.e.signedAt, last: last, n: x.e.edits.length, late: coreIsLate(x.e, c.rules) };
+      });
+      out.sort(function (a, b) { return a.last.at < b.last.at ? 1 : -1; });
+      return out.slice(0, 300);
     },
 
     getRange: function (p) {
@@ -594,13 +769,68 @@ function coreActions(store) {
     saveRoster: function (p) {
       var u = auth(p), lop = coreUp(p.lop);
       if (!coreCanRoster(u, lop)) coreErr('Chỉ GVCN lớp ' + lop + ' hoặc quản trị được cập nhật danh sách.', 'perm');
+      var list = Array.isArray(p.students) ? p.students : coreList(p.students), map = {};
+      var names = coreRoster(list.map(function (x) { if (x && typeof x === 'object') { var t = coreStr(x.ten).replace(/\s+/g, ' ').trim(); map[t] = x; return t; } return x; }));
       return store.lock(function () {
         var c = cfg();
-        c.students[lop] = coreRoster(p.students);
+        c.students[lop] = names;
+        c.hsInfo = c.hsInfo || {};
+        if (p.withInfo) c.hsInfo[lop] = coreCleanInfo(map, names);
+        else if (c.hsInfo[lop]) c.hsInfo[lop] = coreCleanInfo(c.hsInfo[lop], names);
         store.setCfg(c);
-        return { lop: lop, students: c.students[lop] };
+        return { lop: lop, students: names, info: c.hsInfo[lop] || {} };
       });
     },
+
+    getSigs: function (p) { auth(p); return store.sigGet((p.ids || []).slice(0, 200).map(coreStr)); },
+    setSig: function (p) {
+      var u = auth(p), id = coreStr(p.id) || u.id, c = cfg();
+      if (!u.admin && id !== u.id) coreErr('Bạn chỉ cập nhật chữ ký của mình.', 'perm');
+      if (!coreSigOk(p.sig)) coreErr('Ảnh chữ ký không hợp lệ hoặc quá lớn.', 'bad');
+      var a = c.accounts.filter(function (x) { return x.id === id; })[0];
+      if (!a && id !== 'admin') coreErr('Không tìm thấy tài khoản.', 'bad');
+      return store.lock(function () { store.sigSet(id, a ? a.name : 'Quản trị', coreStr(p.sig)); return true; });
+    },
+
+    tkbImport: function (p) {
+      admin(p);
+      var c = cfg(), from = coreNum(p.fromWeek, 1);
+      if (from < 1 || from > c.school.totalWeeks) coreErr('Tuần áp dụng không hợp lệ.', 'bad');
+      var byTk = {}, byName = {}, unmatched = {};
+      c.accounts.forEach(function (a) { byTk[a.tk] = a; byName[a.name.toLowerCase()] = a; });
+      var seen = {}, rows = [];
+      (p.rows || []).forEach(function (r) {
+        var lop = coreUp(r.lop), thu = coreNum(r.thu, -1), buoi = r.buoi === 'C' ? 'C' : 'S', tiet = coreNum(r.tiet, 0), mon = coreStr(r.mon).trim();
+        if (!lop || thu < 0 || thu > 5 || tiet < 1 || tiet > 5 || !mon) return;
+        var k = lop + thu + buoi + tiet; if (seen[k]) return; seen[k] = 1;
+        var g = coreStr(r.gv).trim(), a = byTk[g.toLowerCase()] || byName[g.toLowerCase()];
+        if (g && !a) unmatched[g] = 1;
+        rows.push({ from: from, lop: lop, thu: thu, buoi: buoi, tiet: tiet, mon: mon.slice(0, 80), phanMon: coreStr(r.phanMon).trim().slice(0, 80), gvId: a ? a.id : '', gvName: a ? a.name : g.slice(0, 80) });
+      });
+      if (!rows.length) coreErr('Không có dòng thời khoá biểu hợp lệ.', 'bad');
+      var lops = {}; rows.forEach(function (r) { lops[r.lop] = 1; });
+      return store.lock(function () {
+        store.tkbReplace(from, Object.keys(lops), rows);
+        var added = 0;
+        if (p.updateAssign) {
+          var c2 = cfg();
+          rows.forEach(function (r) { var a = c2.accounts.filter(function (x) { return x.id === r.gvId; })[0]; if (a && a.lop.indexOf(r.lop) < 0) { a.lop.push(r.lop); added++; } });
+          if (added) store.setCfg(c2);
+        }
+        return { count: rows.length, lops: Object.keys(lops).length, unmatched: Object.keys(unmatched), added: added };
+      });
+    },
+    tkbVersions: function (p) {
+      auth(p);
+      var v = {};
+      store.tkbRows('').forEach(function (r) { var x = v[r.from] = v[r.from] || { from: r.from, n: 0, lops: {} }; x.n++; x.lops[r.lop] = 1; });
+      return Object.keys(v).map(function (k) { return { from: v[k].from, n: v[k].n, lops: Object.keys(v[k].lops).sort() }; }).sort(function (a, b) { return a.from - b.from; });
+    },
+    tkbExport: function (p) { admin(p); return store.tkbRows(''); },
+    tkbDelete: function (p) { admin(p); var f = coreNum(p.fromWeek, 0); return store.lock(function () { store.tkbReplace(f, null, []); return true; }); },
+
+    backupInfo: function (p) { admin(p); var b = store.backupInfo ? store.backupInfo() : { supported: false }; b.rules = cfg().rules.backup; return b; },
+    backupNow: function (p) { admin(p); if (!store.backupNow) coreErr('Chế độ dùng thử không có sao lưu tự động. Dùng "Tải file sao lưu".', 'bad'); return store.backupNow('Thủ công'); },
 
     setConfig: function (p) {
       var u = admin(p);
@@ -616,6 +846,7 @@ function coreActions(store) {
         var c = coreCleanCfg(p.cfg || {}, cfg());
         store.setCfg(c);
         store.replaceAll(p.weeks || [], p.nenep || []);
+        if (Array.isArray(p.tkb) && store.tkbReplaceAll) store.tkbReplaceAll(p.tkb);
         return { cfg: corePublicCfg(c, u) };
       });
     }
@@ -638,7 +869,7 @@ function makeLocalStore() {
   var K = 'sdb_btd_v2';
   var db;
   try { db = JSON.parse(localStorage.getItem(K)) || {}; } catch (e) { db = {}; }
-  db.weeks = db.weeks || {}; db.nenep = db.nenep || []; db.sess = db.sess || {};
+  db.weeks = db.weeks || {}; db.nenep = db.nenep || []; db.sess = db.sess || {}; db.tkb = db.tkb || []; db.sigs = db.sigs || {};
   function save() { try { localStorage.setItem(K, JSON.stringify(db)); } catch (e) { coreErr('Trình duyệt không cho lưu dữ liệu (bộ nhớ đầy hoặc bị chặn).', 'store'); } }
   return {
     getCfg: function () { return coreMergeCfg(db.cfg ? coreClone(db.cfg) : null); },
@@ -653,16 +884,32 @@ function makeLocalStore() {
       return Object.keys(db.weeks).map(function (k) { return db.weeks[k]; })
         .filter(function (d) { return lops.indexOf(d.lop) >= 0 && d.week >= w1 && d.week <= w2; }).map(coreClone);
     },
+    editedSlots: function (since) {
+      var out = [];
+      Object.keys(db.weeks).forEach(function (id) {
+        var d = db.weeks[id];
+        Object.keys(d.slots).forEach(function (k) { var e = d.slots[k], last = coreLastEdit(e); if (last && last.at >= since) out.push({ lop: d.lop, week: d.week, key: k, e: coreClone(e) }); });
+      });
+      return out;
+    },
     nenep: function (w1, w2) { return db.nenep.filter(function (r) { return r.tuan >= w1 && r.tuan <= w2; }).map(coreClone); },
     nenepAdd: function (r) { db.nenep.push(r); save(); },
     nenepGet: function (id) { return db.nenep.filter(function (r) { return r.id === id; })[0] || null; },
     nenepDel: function (id) { db.nenep = db.nenep.filter(function (r) { return r.id !== id; }); save(); },
+    tkbRows: function (lop) { return db.tkb.filter(function (r) { return !lop || r.lop === lop; }).map(coreClone); },
+    tkbReplace: function (from, lops, rows) {
+      db.tkb = db.tkb.filter(function (r) { return !(r.from === from && (!lops || lops.indexOf(r.lop) >= 0)); }).concat(rows); save();
+    },
+    tkbReplaceAll: function (rows) { db.tkb = rows.filter(function (r) { return r && r.lop; }); save(); },
+    sigGet: function (ids) { var o = {}; ids.forEach(function (id) { if (db.sigs[id]) o[id] = db.sigs[id]; }); return o; },
+    sigSet: function (id, name, url) { if (url) db.sigs[id] = url; else delete db.sigs[id]; save(); },
     replaceAll: function (weeks, nn) {
       db.weeks = {};
       weeks.forEach(function (d) { if (d && d.lop) db.weeks[coreUp(d.lop) + '|' + d.week] = d; });
       db.nenep = nn.filter(function (r) { return r && r.id; });
       save();
     },
+    backupInfo: function () { return { supported: false }; },
     sessPut: function (t, s) { db.sess[t] = s; save(); },
     sessGet: function (t) { return db.sess[t] || null; },
     sessDel: function (t) { delete db.sess[t]; save(); },
@@ -688,7 +935,7 @@ const natSort = (a, b) => String(a).localeCompare(String(b), 'vi', { numeric: tr
 const RANK_HK = { tot: 'Tốt', kha: 'Khá', dat: 'Đạt', cd: 'Chưa đạt' };
 const SUBJECTS = ['Toán', 'Ngữ văn', 'Tiếng Anh', 'Vật lí', 'Hoá học', 'Sinh học', 'Lịch sử', 'Địa lí', 'Tin học', 'Công nghệ', 'GD Kinh tế và Pháp luật', 'GD Thể chất', 'GD Quốc phòng và An ninh', 'Hoạt động trải nghiệm, HN', 'Giáo dục địa phương', 'Âm nhạc', 'Mĩ thuật', 'Chào cờ', 'Sinh hoạt lớp'];
 
-const S = { mode: 'local', token: '', me: null, cfg: coreMergeCfg(null), view: 'sdb', lop: '', week: 1, weekDoc: null, poll: null,
+const S = { mode: 'local', token: '', me: null, srvVer: 0, sigs: {}, edits: [], editPoll: null, cfg: coreMergeCfg(null), view: 'sdb', lop: '', week: 1, weekDoc: null, poll: null,
   nn: { data: null, lop: '', loai: 'tru', form: {} }, hs: { lop: '', month: '', data: null }, ch: { tab: 'truong', draft: null, catFilter: '' }, loginRole: 'user' };
 let localStore = null;
 
@@ -826,7 +1073,8 @@ $('loginForm').addEventListener('submit', async e => {
 });
 function logout() {
   if (S.token) api('logout', {}).catch(() => { });
-  S.token = ''; S.me = null; clearInterval(S.poll);
+  S.token = ''; S.me = null; clearInterval(S.poll); clearInterval(S.editPoll); S.sigs = {}; S.edits = [];
+  if ($('srvWarn')) $('srvWarn').hidden = true;
   try { localStorage.removeItem(SS_KEY); } catch (e) { }
   closeModal();
   ['vSdb', 'vNn', 'vHs', 'vBc', 'vCh'].forEach(v => $(v).hidden = true);
@@ -870,9 +1118,11 @@ function renderShell() {
   document.title = 'Sổ đầu bài điện tử – ' + sc.ten;
   const u = S.me;
   $('who').innerHTML = '<span class="chip"><b>' + esc(u.name) + '</b>' + (u.mon ? ' · ' + esc(u.mon) : '') + roleBadges(u) + '</span>' +
-    (u.admin ? '' : '<button class="btn-c" id="btnPw" type="button">Đổi mật khẩu</button>') + '<button class="btn-c" id="btnOut" type="button">Đăng xuất</button>';
+    (bellAllowed() ? '<button class="btn-c bell" id="bellBtn" type="button" title="Cảnh báo sửa sổ" aria-label="Cảnh báo sửa sổ"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.84V3.5a1.5 1.5 0 0 0-3 0v.66A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z"/></svg><span class="badge" hidden>0</span></button>' : '') +
+    (u.admin ? '' : '<button class="btn-c" id="btnMe" type="button">Tài khoản</button>') + '<button class="btn-c" id="btnOut" type="button">Đăng xuất</button>';
   $('btnOut').onclick = logout;
-  if ($('btnPw')) $('btnPw').onclick = openChangePass;
+  if ($('btnMe')) $('btnMe').onclick = openMyAccount;
+  if ($('bellBtn')) $('bellBtn').onclick = openEdits;
   $('navIn').innerHTML = VIEWS.filter(v => v[3]()).map(v => '<button type="button" data-v="' + v[0] + '" class="' + (S.view === v[0] ? 'on' : '') + '">' + v[2] + '</button>').join('');
   $('navIn').querySelectorAll('button').forEach(b => b.onclick = () => showView(b.dataset.v));
 }
@@ -884,7 +1134,14 @@ function applyBrand(b) {
   $('schoolLine').textContent = [b.so, b.ten, b.namHoc ? 'Năm học ' + b.namHoc : ''].filter(Boolean).join(' · ');
   if ($('lgSchool')) $('lgSchool').innerHTML = (b.logo ? '<img src="' + b.logo + '" alt="">' : '') + '<div><small>' + esc(b.so) + '</small><b>' + esc(b.ten) + '</b></div>';
 }
-function enterApp() {
+async function checkServer() {
+  if (S.mode === 'local') { S.srvVer = CORE_VERSION; return; }
+  try { S.srvVer = Number(await api('version', {})) || 0; } catch (e) { S.srvVer = 3; }
+  const w = $('srvWarn');
+  if (w) { w.hidden = srvOk() || !(S.me && S.me.admin); w.innerHTML = '<div class="note late-note"><b>Máy chủ Apps Script đang chạy phiên bản cũ.</b> Các tính năng thời khoá biểu, phân môn, điểm danh, chữ ký, cảnh báo sửa sổ, sao lưu tự động chưa hoạt động. Hãy dán file <b>Code.gs</b> mới vào Apps Script, chạy hàm <code class="k">caiDatSaoLuu</code> một lần, rồi <b>Triển khai → Quản lý triển khai → Chỉnh sửa → Phiên bản mới</b> (giữ nguyên URL).</div>'; }
+}
+async function enterApp() {
+  await checkServer();
   $('loginView').hidden = true; $('nav').hidden = false;
   S.week = curWeek();
   const cls = allClasses();
@@ -892,6 +1149,10 @@ function enterApp() {
   if (!VIEWS.find(v => v[0] === S.view && v[3]())) S.view = 'sdb';
   renderShell();
   showView(S.view);
+  loadEdits(true);
+  clearInterval(S.editPoll);
+  if (S.mode === 'gas') S.editPoll = setInterval(() => { if (document.visibilityState === 'visible') loadEdits(true); }, 180000);
+  backupReminder();
 }
 function showView(v) {
   S.view = v;
@@ -900,20 +1161,6 @@ function showView(v) {
   $('navIn').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
   ({ sdb: renderSdb, nn: renderNn, hs: renderHs, bc: renderBc, ch: renderCh })[v]();
 }
-function openChangePass() {
-  openModal('<div class="dlg-h"><h3>Đổi mật khẩu</h3><button class="x" data-close aria-label="Đóng">×</button></div>' +
-    '<form id="pwF"><div class="dlg-b"><label class="f">Mật khẩu hiện tại<input class="in" id="pw0" type="password" autocomplete="current-password"></label>' +
-    '<label class="f">Mật khẩu mới (ít nhất 4 ký tự)<input class="in" id="pw1" type="password" autocomplete="new-password"></label>' +
-    '<label class="f">Nhập lại mật khẩu mới<input class="in" id="pw2" type="password" autocomplete="new-password"></label><div class="err" id="pwE"></div></div>' +
-    '<div class="dlg-f"><button class="btn" type="button" data-close>Huỷ</button><button class="btn primary" type="submit">Đổi mật khẩu</button></div></form>', 'sm');
-  $('pwF').onsubmit = async e => {
-    e.preventDefault();
-    if ($('pw1').value !== $('pw2').value) { $('pwE').textContent = 'Hai lần nhập mật khẩu mới chưa khớp.'; return; }
-    try { await api('changePass', { oldPass: $('pw0').value, newPass: $('pw1').value }); closeModal(); toast('Đã đổi mật khẩu.'); }
-    catch (er) { $('pwE').textContent = er.message; }
-  };
-}
-
 /* ---------- Thanh chọn tuần dùng chung ---------- */
 function weekNavHtml(p) {
   return '<div class="weeknav"><button class="iconbtn" id="' + p + 'Prev" type="button" aria-label="Tuần trước">‹</button>' +
@@ -933,19 +1180,218 @@ function classSelect(id, list, sel, mark) {
 }
 
 /* ===================================================================
+ * CHỮ KÝ ẢNH, TƯƠNG THÍCH MÁY CHỦ
+ * =================================================================== */
+const PHAN_MON_GOI_Y = {
+  'công nghệ': ['Công nghệ trồng trọt', 'Công nghệ chăn nuôi', 'Lâm nghiệp – Thuỷ sản', 'Thiết kế và công nghệ', 'Công nghệ điện – điện tử', 'Công nghệ cơ khí'],
+  'gd quốc phòng và an ninh': ['Lý thuyết', 'Thực hành'],
+  'tin học': ['Tin học ứng dụng', 'Khoa học máy tính'],
+  'hoạt động trải nghiệm, hn': ['Sinh hoạt dưới cờ', 'Sinh hoạt lớp', 'Hoạt động giáo dục theo chủ đề'],
+  'giáo dục địa phương': []
+};
+function hasPhanMon(mon) { const m = String(mon || '').trim().toLowerCase(); return !!m && (S.cfg.rules.phanMon || []).some(x => x.toLowerCase() === m); }
+function monText(e) { return e.mon + (e.phanMon ? ' – ' + e.phanMon : ''); }
+function graceH() { return Number(S.cfg.rules.graceHours) || 0; }
+function isLate(e) { return coreIsLate(e, S.cfg.rules); }
+function srvOk() { return S.srvVer >= 4; }
+async function ensureSigs(ids) {
+  S.sigs = S.sigs || {};
+  const miss = [...new Set(ids.filter(id => id && !(id in S.sigs)))];
+  if (!miss.length || !srvOk()) return;
+  try { const m = await api('getSigs', { ids: miss }); miss.forEach(id => S.sigs[id] = m[id] || ''); } catch (e) { miss.forEach(id => S.sigs[id] = ''); }
+}
+function sigOf(id) { return (S.sigs || {})[id] || ''; }
+function accIdByName(name) { const a = (S.cfg.accounts || []).find(x => x.name === name); return a ? a.id : ''; }
+function gvcnIdOf(lop) { const a = (S.cfg.accounts || []).find(x => x.cn === lop); return a ? a.id : ''; }
+// Xử lý ảnh chữ ký: cắt viền trắng, làm nền trong suốt, thu nhỏ, PNG ≤ ~30KB
+function processSignature(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onerror = () => reject(new Error('Không đọc được ảnh chữ ký.'));
+    img.onload = () => {
+      const W = img.naturalWidth || img.width, H = img.naturalHeight || img.height;
+      const k0 = Math.min(1, 900 / Math.max(W, H));
+      const c0 = document.createElement('canvas'); c0.width = Math.max(1, Math.round(W * k0)); c0.height = Math.max(1, Math.round(H * k0));
+      const g0 = c0.getContext('2d'); g0.drawImage(img, 0, 0, c0.width, c0.height);
+      let data; try { data = g0.getImageData(0, 0, c0.width, c0.height); } catch (e) { reject(new Error('Không xử lý được ảnh.')); return; }
+      const px = data.data; let x0 = c0.width, y0 = c0.height, x1 = -1, y1 = -1;
+      for (let y = 0; y < c0.height; y++) for (let x = 0; x < c0.width; x++) {
+        const i = (y * c0.width + x) * 4, lum = 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
+        if (px[i + 3] < 20 || lum > 200) { px[i + 3] = 0; continue; }
+        // mực: giữ màu, độ đậm theo độ tối
+        px[i + 3] = Math.min(255, Math.round((255 - lum) * 1.6));
+        if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+      }
+      if (x1 < 0) { reject(new Error('Ảnh không có nét chữ ký. Hãy chụp trên nền giấy trắng.')); return; }
+      g0.putImageData(data, 0, 0);
+      const pad = 6, cw = x1 - x0 + 1 + pad * 2, ch = y1 - y0 + 1 + pad * 2;
+      for (const maxW of [360, 300, 240, 200]) {
+        const k = Math.min(1, maxW / cw, 130 / ch);
+        const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(cw * k)); c.height = Math.max(1, Math.round(ch * k));
+        c.getContext('2d').drawImage(c0, x0 - pad, y0 - pad, cw, ch, 0, 0, c.width, c.height);
+        const url = c.toDataURL('image/png');
+        if (url.length <= 30000) { resolve(url); return; }
+      }
+      reject(new Error('Ảnh chữ ký quá chi tiết, hãy chụp gọn hơn.'));
+    };
+    img.src = src;
+  });
+}
+function readImageFile(file) { return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = () => rej(new Error('Không đọc được file.')); fr.readAsDataURL(file); }); }
+// Hộp chọn chữ ký: tải ảnh hoặc vẽ trực tiếp; gọi done(url) khi lưu
+function signatureEditor(host, current, onSave) {
+  host.innerHTML = '<div class="sig-prev" id="sgPrev">' + (current ? '<img src="' + current + '" alt="Chữ ký">' : '<span>Chưa có chữ ký</span>') + '</div>' +
+    '<div class="seg" style="max-width:360px"><button type="button" class="on" data-m="up">Tải ảnh chữ ký</button><button type="button" data-m="draw">Vẽ chữ ký</button></div>' +
+    '<div id="sgUp" class="grid" style="gap:8px"><div class="muted" style="font-size:12.5px">Ký bằng bút mực xanh hoặc đen trên giấy trắng, chụp rõ nét. Hệ thống tự cắt viền và xoá nền.</div>' +
+    '<div class="row"><label class="btn primary sm" style="cursor:pointer">Chọn ảnh<input type="file" id="sgFile" accept="image/*" hidden></label>' + (current ? '<button type="button" class="btn sm danger" id="sgDel">Xoá chữ ký</button>' : '') + '</div></div>' +
+    '<div id="sgDraw" hidden class="grid" style="gap:8px"><canvas id="sgPad" class="sig-pad" width="560" height="200"></canvas>' +
+    '<div class="row"><button type="button" class="btn sm" id="sgClr">Vẽ lại</button><div style="flex:1"></div><button type="button" class="btn primary sm" id="sgUse">Dùng chữ ký này</button></div></div><div class="err" id="sgErr"></div>';
+  const show = url => { $('sgPrev').innerHTML = '<img src="' + url + '" alt="Chữ ký">'; };
+  host.querySelectorAll('.seg button').forEach(b => b.onclick = () => {
+    host.querySelectorAll('.seg button').forEach(x => x.classList.toggle('on', x === b));
+    $('sgUp').hidden = b.dataset.m !== 'up'; $('sgDraw').hidden = b.dataset.m !== 'draw';
+  });
+  const save = async url => { try { await onSave(url); if (url) show(url); else $('sgPrev').innerHTML = '<span>Chưa có chữ ký</span>'; $('sgErr').textContent = ''; } catch (e) { $('sgErr').textContent = e.message; } };
+  $('sgFile').onchange = async e => { const f = e.target.files[0]; if (!f) return; try { save(await processSignature(await readImageFile(f))); } catch (er) { $('sgErr').textContent = er.message; } };
+  if ($('sgDel')) confirmBtn($('sgDel'), 'Bấm lần nữa để xoá', () => save(''));
+  const pad = $('sgPad'), g = pad.getContext && pad.getContext('2d');
+  if (g) {
+    g.lineWidth = 3.2; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = '#123a8a';
+    let drawing = false, drawn = false;
+    const pt = e => { const r = pad.getBoundingClientRect(); return [(e.clientX - r.left) * pad.width / r.width, (e.clientY - r.top) * pad.height / r.height]; };
+    pad.addEventListener('pointerdown', e => { e.preventDefault(); drawing = true; drawn = true; try { pad.setPointerCapture(e.pointerId); } catch (x) { } const p = pt(e); g.beginPath(); g.moveTo(p[0], p[1]); });
+    pad.addEventListener('pointermove', e => { if (!drawing) return; const p = pt(e); g.lineTo(p[0], p[1]); g.stroke(); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => pad.addEventListener(t, () => { drawing = false; }));
+    $('sgClr').onclick = () => { g.clearRect(0, 0, pad.width, pad.height); drawn = false; };
+    $('sgUse').onclick = async () => { if (!drawn) { $('sgErr').textContent = 'Hãy ký vào khung trước.'; return; } try { save(await processSignature(pad.toDataURL('image/png'))); } catch (er) { $('sgErr').textContent = er.message; } };
+  }
+}
+function openMyAccount() {
+  const u = S.me;
+  openModal('<div class="dlg-h"><h3>Tài khoản của tôi</h3><button class="x" data-close aria-label="Đóng">×</button></div>' +
+    '<div class="dlg-b"><div class="kpis"><span class="stat"><b>' + esc(u.name) + '</b></span>' + (u.mon ? '<span class="stat">Môn: <b>' + esc(u.mon) + '</b></span>' : '') +
+    '<span class="stat">Lớp dạy: <b>' + esc((u.lop || []).join(', ') || '—') + '</b></span>' + (u.cn ? '<span class="stat">Chủ nhiệm: <b>' + esc(u.cn) + '</b></span>' : '') + '</div>' +
+    '<div class="box"><h4><span>Chữ ký ảnh</span></h4><div class="muted" style="font-size:13px">Chữ ký hiện ở cột "GV ký" trong sổ, trên bản in sổ đầu bài, phiếu báo phụ huynh và các báo cáo do bạn lập.</div><div id="sgHost">' + (srvOk() ? '' : '<div class="note">Máy chủ chưa cập nhật phiên bản mới nên chưa lưu được chữ ký.</div>') + '</div></div>' +
+    '<form id="pwF" class="box"><h4><span>Đổi mật khẩu</span></h4><div class="grid g3"><label class="f">Mật khẩu hiện tại<input class="in" id="pw0" type="password" autocomplete="current-password"></label>' +
+    '<label class="f">Mật khẩu mới (≥ 4 ký tự)<input class="in" id="pw1" type="password" autocomplete="new-password"></label>' +
+    '<label class="f">Nhập lại mật khẩu mới<input class="in" id="pw2" type="password" autocomplete="new-password"></label></div><div class="row"><div class="err" id="pwE" style="flex:1"></div><button class="btn primary sm" type="submit">Đổi mật khẩu</button></div></form></div>');
+  if (srvOk()) ensureSigs([u.id]).then(() => signatureEditor($('sgHost'), sigOf(u.id), async url => { await api('setSig', { sig: url }); S.sigs[u.id] = url; toast(url ? 'Đã lưu chữ ký.' : 'Đã xoá chữ ký.'); if (S.view === 'sdb') renderGrid(); }));
+  $('pwF').onsubmit = async e => {
+    e.preventDefault();
+    if ($('pw1').value !== $('pw2').value) { $('pwE').textContent = 'Hai lần nhập mật khẩu mới chưa khớp.'; return; }
+    try { await api('changePass', { oldPass: $('pw0').value, newPass: $('pw1').value }); $('pw0').value = $('pw1').value = $('pw2').value = ''; $('pwE').textContent = ''; toast('Đã đổi mật khẩu.'); }
+    catch (er) { $('pwE').textContent = er.message; }
+  };
+}
+
+/* ===================================================================
+ * CHUÔNG CẢNH BÁO: GIÁO VIÊN SỬA / XOÁ TIẾT ĐÃ KÝ
+ * =================================================================== */
+const SEEN_KEY = () => 'sdb_seen_' + (S.me ? S.me.id : '');
+function bellAllowed() { return S.me && srvOk() && (S.me.admin || has('BGH') || !!S.me.cn); }
+function lastSeen() { try { return localStorage.getItem(SEEN_KEY()) || ''; } catch (e) { return ''; } }
+async function loadEdits(notify) {
+  if (!bellAllowed()) return;
+  try {
+    const list = await api('recentEdits', { days: 14 });
+    S.edits = list;
+    const seen = lastSeen(), fresh = list.filter(x => x.last.at > seen), lateFresh = fresh.filter(x => x.late);
+    const b = $('bellBtn');
+    if (b) { b.querySelector('.badge').textContent = fresh.length; b.querySelector('.badge').hidden = !fresh.length; b.classList.toggle('alert', lateFresh.length > 0); }
+    if (notify && lateFresh.length) toast('Có ' + lateFresh.length + ' tiết vừa bị sửa / xoá quá hạn. Bấm chuông để xem.');
+  } catch (e) { /* máy chủ cũ: bỏ qua */ }
+}
+function openEdits() {
+  const list = S.edits || [], seen = lastSeen();
+  let onlyLate = false;
+  const typeLbl = t => CORE_EDIT_TYPES[t] || 'Sửa';
+  const render = () => {
+    const rows = list.filter(x => !onlyLate || x.late);
+    $('edBody').innerHTML = !rows.length ? '<div class="empty">Không có tiết nào bị sửa trong 14 ngày qua.</div>' :
+      '<div class="tblwrap"><table class="lst"><thead><tr><th>Thời điểm</th><th>Người sửa</th><th>Lớp · Tiết</th><th>Môn · Bài</th><th>Thao tác</th><th>Mức</th></tr></thead><tbody>' +
+      rows.map((x, i) => '<tr class="click' + (x.last.at > seen ? ' new' : '') + '" data-i="' + list.indexOf(x) + '"><td class="tab-num">' + fdt(x.last.at) + '</td><td><b>' + esc(x.last.by) + '</b>' + (x.last.by !== x.gvName ? '<br><span class="muted">Tiết của ' + esc(x.gvName) + '</span>' : '') + '</td>' +
+        '<td><b>' + esc(x.lop) + '</b> · ' + CORE_DAYS[+x.key[0]] + ' ' + vnShort(dateOf(x.week, +x.key[0])) + ', ' + (x.key[1] === 'S' ? 'sáng' : 'chiều') + ' tiết ' + x.key[2] + '</td>' +
+        '<td>' + esc(x.mon) + '<br><span class="muted">' + esc(x.tenBai) + '</span></td><td>' + typeLbl(x.last.type) + (x.n > 1 ? ' <span class="muted">(' + x.n + ' lần)</span>' : '') + (x.deleted ? '<br><span class="pill D">Đang bị xoá</span>' : '') + '</td>' +
+        '<td>' + (x.late ? '<span class="pill late">Quá ' + graceH() + ' giờ</span>' : '<span class="pill A">Trong hạn</span>') + '</td></tr>').join('') + '</tbody></table></div>';
+    $('edBody').querySelectorAll('tr.click').forEach(tr => tr.onclick = () => { const x = list[+tr.dataset.i]; closeModal(); S.lop = x.lop; S.week = x.week; showView('sdb'); });
+  };
+  openModal('<div class="dlg-h"><h3>Cảnh báo sửa sổ đầu bài</h3><button class="x" data-close aria-label="Đóng">×</button></div>' +
+    '<div class="dlg-b"><div class="row"><div class="muted" style="font-size:13px;flex:1">Tiết đã ký bị sửa, xoá hoặc ký lại trong 14 ngày gần đây. <b style="color:var(--late)">Đỏ đậm</b>: thay đổi sau ' + graceH() + ' giờ kể từ lần ký đầu. Bấm một dòng để mở sổ.</div>' +
+    '<label class="row" style="gap:6px;font-weight:600"><input type="checkbox" id="edLate"> Chỉ hiện sửa quá hạn</label></div><div id="edBody"></div></div>', 'wide');
+  $('edLate').onchange = e => { onlyLate = e.target.checked; render(); };
+  render();
+  try { if (list.length) localStorage.setItem(SEEN_KEY(), list[0].last.at); } catch (e) { }
+  const b = $('bellBtn'); if (b) { b.querySelector('.badge').hidden = true; b.classList.remove('alert'); }
+}
+
+/* ===================================================================
+ * HỌC SINH CẦN QUAN TÂM
+ * =================================================================== */
+function absencesOf(data) {
+  const out = [];
+  (data.weeks || []).forEach(doc => Object.keys(doc.slots || {}).forEach(k => {
+    const e = doc.slots[k]; if (!e || e.deleted) return;
+    (e.vangDs || []).forEach(x => out.push({ ngay: dateOf(doc.week, +k[0]), lop: doc.lop, hs: x.hs, loai: x.loai, tiet: k[2], buoi: k[1], mon: e.mon, by: e.gvName }));
+  }));
+  return out;
+}
+function addDays(iso, n) { return coreISO(coreParseISO(iso) + n * 864e5); }
+// Tính danh sách học sinh cần quan tâm cho các lớp theo cấu hình của quản trị
+async function computeWatch(lops) {
+  const W = S.cfg.rules.watch, today = todayISO();
+  if (!W.on || !lops.length) return [];
+  const winFrom = addDays(today, -(W.days - 1)), mFrom = today.slice(0, 7) + '-01', from = winFrom < mFrom ? winFrom : mFrom;
+  const r = await loadEvents(lops, from, today);
+  const abs = absencesOf(r.data).filter(a => a.ngay >= winFrom && a.ngay <= today);
+  const out = [];
+  lops.forEach(lop => {
+    const month = studentScores(lop, r.ev.filter(x => x.ngay >= mFrom));
+    month.forEach(st => {
+      const win = r.ev.filter(x => x.lop === lop && x.hs === st.ten && x.loai === 'tru' && x.ngay >= winFrom);
+      const tru = win.reduce((s, x) => s + x.diemHS, 0), kp = abs.filter(a => a.lop === lop && a.hs === st.ten && a.loai === 'KP').length;
+      const why = [];
+      if (W.vpCount && win.length >= W.vpCount) why.push(win.length + ' lần vi phạm / ' + W.days + ' ngày');
+      if (W.truMin && tru >= W.truMin) why.push('bị trừ ' + tru + ' điểm / ' + W.days + ' ngày');
+      if (W.kpCount && kp >= W.kpCount) why.push('vắng không phép ' + kp + ' tiết');
+      if (W.scoreBelow && st.diem < W.scoreBelow) why.push('điểm tháng còn ' + st.diem);
+      if (why.length) out.push({ lop: lop, ten: st.ten, why: why, diem: st.diem, xl: st.xl, recent: win.slice(-3).map(x => vnShort(x.ngay) + ' ' + x.ten), level: why.length >= 2 || st.xl === 'cd' ? 2 : 1 });
+    });
+  });
+  return out.sort((a, b) => b.level - a.level || natSort(a.lop, b.lop) || a.diem - b.diem);
+}
+function watchHtml(list, showLop) {
+  const W = S.cfg.rules.watch;
+  if (!W.on) return '';
+  const rule = 'Tiêu chí: ' + [W.vpCount ? '≥ ' + W.vpCount + ' lần vi phạm' : '', W.truMin ? 'bị trừ ≥ ' + W.truMin + ' điểm' : '', W.kpCount ? 'vắng KP ≥ ' + W.kpCount + ' tiết' : ''].filter(Boolean).join(', ') + ' trong ' + W.days + ' ngày' + (W.scoreBelow ? '; hoặc điểm tháng dưới ' + W.scoreBelow : '');
+  if (!list.length) return '<div class="watch ok"><div class="watch-h"><b>Học sinh cần quan tâm</b><span>Không có học sinh nào chạm ngưỡng cảnh báo.</span></div><div class="watch-rule">' + esc(rule) + '</div></div>';
+  return '<div class="watch"><div class="watch-h"><span class="watch-ic" aria-hidden="true">!</span><b>Học sinh cần quan tâm (' + list.length + ')</b><span>' + esc(rule) + '</span></div><div class="watch-list">' +
+    list.map(x => '<div class="wcard' + (x.level > 1 ? ' hi' : '') + '"><div class="wname">' + (showLop ? '<span class="pill B">' + esc(x.lop) + '</span> ' : '') + '<b>' + esc(x.ten) + '</b><span class="pill ' + x.xl + '">' + x.diem + ' đ</span></div>' +
+      '<div class="wwhy">' + x.why.map(w => '<span>' + esc(w) + '</span>').join('') + '</div>' + (x.recent.length ? '<div class="wrec">' + esc(x.recent.join(' · ')) + '</div>' : '') + '</div>').join('') + '</div></div>';
+}
+async function renderWatch(hostId, lops, showLop) {
+  const host = $(hostId); if (!host) return;
+  if (!S.cfg.rules.watch.on || !lops.length) { host.innerHTML = ''; return; }
+  try { const list = await computeWatch(lops); if ($(hostId)) $(hostId).innerHTML = watchHtml(list, showLop); S.watchCache = { key: lops.join(','), list: list }; }
+  catch (e) { host.innerHTML = ''; }
+}
+
+/* ===================================================================
  * SỔ ĐẦU BÀI
  * =================================================================== */
 function renderSdb() {
   const cls = allClasses();
   if (!S.lop && cls.length) S.lop = cls[0];
+  const g = graceH();
   $('vSdb').innerHTML =
     '<div class="card"><div class="toolbar">' +
       '<label class="f" style="min-width:150px">Lớp' + classSelect('sdbLop', cls, S.lop, l => coreCanSign(S.me, l)) + '</label>' +
       weekNavHtml('sw') + '<div class="grow"></div>' +
-      '<span class="muted" style="font-size:12.5px">GVCN: <b id="sdbCn"></b></span>' +
+      '<span class="muted" style="font-size:12.5px">GVCN: <b id="sdbCn"></b> · Sĩ số: <b id="sdbSs"></b> <span id="sdbTkb"></span></span>' +
     '</div><div class="stats" id="stats"></div>' +
-    '<div class="legend"><span><i style="background:var(--paper2);border:1px solid var(--line)"></i>Chưa ghi</span>' +
-    '<span><i style="background:var(--red-bg);border:1px solid var(--red)"></i>Đã sửa sau khi ký (tên, ngày giờ sửa)</span><span id="permNote"></span></div></div>' +
+    '<div class="legend"><span><i style="background:var(--paper);border:1px solid var(--line)"></i>Chữ đen: ghi bình thường' + (g ? ', sửa trong ' + g + ' giờ' : '') + '</span>' +
+    '<span><i style="background:var(--late-bg);border:1px solid var(--late)"></i><b style="color:var(--late)">Đỏ đậm</b>: sửa / xoá làm lại sau ' + g + ' giờ (ghi tên, ngày giờ)</span>' +
+    '<span><i class="tkb-i"></i>Tiết theo thời khoá biểu, chưa ký</span><span id="permNote"></span></div></div>' +
+    '<div id="watchSdb"></div>' +
     '<div class="card sheet" id="sheet"></div>';
   $('sdbLop').onchange = e => { S.lop = e.target.value; watchWeek(); };
   bindWeekNav('sw', watchWeek);
@@ -957,63 +1403,81 @@ async function fetchWeek(quiet) {
     const d = await api('getWeek', { lop: lop, week: w });
     if (lop !== S.lop || w !== S.week) return;
     const same = JSON.stringify(d) === JSON.stringify(S.weekDoc);
-    S.weekDoc = d; if (!quiet || !same) renderGrid();
+    S.weekDoc = d;
+    const ids = Object.values(d.slots || {}).map(e => e && e.gvId);
+    const need = ids.some(id => id && !((S.sigs || {}).hasOwnProperty(id)));
+    if (!quiet || !same || need) { renderGrid(); if (need) ensureSigs(ids).then(() => { if (lop === S.lop && w === S.week) renderGrid(); }); }
   } catch (e) { if (!quiet) { toast('Không đọc được sổ tuần này: ' + e.message); renderGrid(); } }
 }
 function watchWeek() {
   clearInterval(S.poll); S.weekDoc = null;
   if (!S.lop) { renderGrid(); return; }
   renderGrid(true); fetchWeek(false);
+  renderWatch('watchSdb', [S.lop], false);
   if (S.mode === 'gas') S.poll = setInterval(() => { if (S.view === 'sdb' && document.visibilityState === 'visible' && !$('mdl')) fetchWeek(true); }, 30000);
 }
 function itemsHtml(list, cls) { return (list || []).map(x => '<span class="it ' + cls + '"><b>' + esc(x.hs) + '</b>: ' + esc(x.ten) + (x.ghiChu ? ' – ' + esc(x.ghiChu) : '') + (cls === 'r' ? ' <small>(−' + x.diemHS + ')</small>' : '') + '</span>').join(''); }
 function weekStats(slots) {
-  const r = { done: 0, A: 0, B: 0, C: 0, D: 0, vp: 0, tru: 0, dh: 0, td: 0, ed: 0 };
+  const r = { done: 0, A: 0, B: 0, C: 0, D: 0, vp: 0, tru: 0, dh: 0, td: 0, ed: 0, late: 0, vP: 0, vKP: 0 };
   Object.values(slots || {}).forEach(e => {
-    if (!e) return; r.done++; if (r[e.xepLoai] != null) r[e.xepLoai]++;
+    if (!e) return;
+    if (e.edits && e.edits.length) { r.ed++; if (isLate(e)) r.late++; }
+    if (e.deleted) return;
+    r.done++; if (r[e.xepLoai] != null) r[e.xepLoai]++;
     (e.vp || []).forEach(x => { r.vp++; r.tru += x.diemHS; });
     (e.cong || []).forEach(x => { if (x.kieu === 'td') r.td++; else r.dh++; });
-    if (e.edits && e.edits.length) r.ed++;
+    (e.vangDs || []).forEach(x => { if (x.loai === 'KP') r.vKP++; else r.vP++; });
   });
   return r;
+}
+function editNote(e) {
+  const last = coreLastEdit(e); if (!last) return '';
+  const late = isLate(e);
+  return '<span class="edit' + (late ? ' late' : '') + '">' + (CORE_EDIT_TYPES[last.type] || 'Sửa') + ': ' + esc(last.by) + ' · ' + fdt(last.at) + (e.edits.length > 1 ? ' (' + e.edits.length + ' lần)' : '') + '</span>';
 }
 function renderGrid(loading) {
   if (!$('sheet')) return;
   $('sdbCn').textContent = gvcnOf(S.lop) || '—';
+  $('sdbSs').textContent = roster(S.lop).length || '—';
   if (!S.lop) { $('sheet').innerHTML = '<div class="empty">Chưa có lớp. Quản trị cần nhập tài khoản giáo viên kèm lớp giảng dạy.</div>'; $('stats').innerHTML = ''; return; }
-  const slots = (S.weekDoc && S.weekDoc.slots) || {};
+  const slots = (S.weekDoc && S.weekDoc.slots) || {}, tkb = (S.weekDoc && S.weekDoc.tkb) || { from: 0, slots: {} };
+  $('sdbTkb').innerHTML = tkb.from ? '· <span class="pill B">TKB áp dụng từ tuần ' + tkb.from + '</span>' : '';
   const st = weekStats(slots);
   $('stats').innerHTML =
-    '<span class="stat"><b>' + st.done + '</b>/60 tiết đã ghi</span>' +
+    '<span class="stat"><b>' + st.done + '</b>/' + (Object.keys(tkb.slots).length || 60) + ' tiết đã ký</span>' +
     ['A', 'B', 'C', 'D'].map(k => '<span class="stat"><span class="pill ' + k + '">' + CORE_RATE[k] + '</span><b>' + st[k] + '</b></span>').join('') +
     '<span class="stat r">Vi phạm <b>' + st.vp + '</b> lượt · <b>−' + st.tru + '</b> điểm</span>' +
     '<span class="stat p">Điểm hồng <b>' + st.dh + '</b></span><span class="stat g">Tuyên dương <b>' + st.td + '</b></span>' +
-    (st.ed ? '<span class="stat r">Đã sửa <b>' + st.ed + '</b> tiết</span>' : '');
+    (st.vP + st.vKP ? '<span class="stat">Vắng <b>' + (st.vP + st.vKP) + '</b> lượt (P ' + st.vP + ', KP ' + st.vKP + ')</span>' : '') +
+    (st.late ? '<span class="stat late">Sửa quá hạn <b>' + st.late + '</b> tiết</span>' : st.ed ? '<span class="stat">Đã sửa <b>' + st.ed + '</b> tiết</span>' : '');
   const can = coreCanSign(S.me, S.lop);
   $('permNote').innerHTML = can ? '<b style="color:var(--green)">Bạn được ký sổ lớp ' + esc(S.lop) + '</b> · bấm vào một tiết để ghi' : '<b style="color:var(--amber)">Chỉ xem</b> · bạn không dạy lớp ' + esc(S.lop);
   const today = todayISO();
-  let h = '<table class="sdb"><thead><tr><th>Thứ / Ngày</th><th>Buổi</th><th>Tiết</th><th style="min-width:110px">Môn học</th><th>PPCT</th><th style="min-width:170px">Tên bài</th><th style="min-width:100px">Vắng</th>' +
-    '<th class="grp-r" style="min-width:230px">Học sinh vi phạm</th><th class="grp-g" style="min-width:160px">Điểm hồng</th><th class="grp-g" style="min-width:160px">Tuyên dương</th>' +
-    '<th style="min-width:170px">Nhận xét giờ dạy</th><th>Xếp loại</th><th style="min-width:150px">GV ký</th></tr></thead><tbody>';
+  let h = '<table class="sdb"><thead><tr><th>Thứ / Ngày</th><th>Buổi</th><th>Tiết</th><th style="min-width:120px">Môn học</th><th>PPCT</th><th style="min-width:170px">Tên bài</th><th style="min-width:110px">Vắng</th>' +
+    '<th class="grp-r" style="min-width:230px">Học sinh vi phạm</th><th class="grp-g" style="min-width:150px">Điểm hồng</th><th class="grp-g" style="min-width:150px">Tuyên dương</th>' +
+    '<th style="min-width:170px">Nhận xét giờ dạy</th><th>Xếp loại</th><th style="min-width:160px">GV ký</th></tr></thead><tbody>';
   for (let d = 0; d < 6; d++) {
     const iso = dateOf(S.week, d), isT = iso === today;
     ['S', 'C'].forEach((b, bi) => {
       for (let t = 1; t <= 5; t++) {
-        const k = d + b + t, e = slots[k], ed = e && e.edits && e.edits.length;
+        const k = d + b + t, raw = slots[k], e = raw && !raw.deleted ? raw : null, tk = tkb.slots[k];
+        const late = raw && isLate(raw);
         const locked = !can || (e && !S.me.admin && e.gvId !== S.me.id);
-        const cls = ['slot']; if (ed) cls.push('edited'); if (locked && !e) cls.push('locked'); if (bi === 1 && t === 5) cls.push('endday');
+        const cls = ['slot']; if (late) cls.push('late'); if (locked && !e) cls.push('locked'); if (bi === 1 && t === 5) cls.push('endday'); if (!e && tk) cls.push('planned');
         h += '<tr class="' + cls.join(' ') + '" data-k="' + k + '">';
         if (bi === 0 && t === 1) h += '<td class="day' + (isT ? ' today' : '') + '" rowspan="10"><b>' + CORE_DAYS[d] + '</b><span>' + vn(iso) + (isT ? '<br>Hôm nay' : '') + '</span></td>';
         if (t === 1) h += '<td class="buoi" rowspan="5">' + (b === 'S' ? 'SÁNG' : 'CHIỀU') + '</td>';
         h += '<td class="tiet">' + t + '</td>';
         if (e) {
-          const last = ed ? e.edits[e.edits.length - 1] : null;
-          h += '<td class="mon">' + esc(e.mon) + '</td><td class="tab-num">' + esc(e.tietPPCT) + '</td><td class="wrapc">' + esc(e.tenBai) + '</td><td class="wrapc">' + esc(e.vang) + '</td>' +
+          const sg = sigOf(e.gvId);
+          h += '<td class="mon">' + esc(e.mon) + (e.phanMon ? '<small class="pm">' + esc(e.phanMon) + '</small>' : '') + '</td><td class="tab-num">' + esc(e.tietPPCT) + '</td><td class="wrapc">' + esc(e.tenBai) + '</td><td class="wrapc">' + esc(e.vang) + '</td>' +
             '<td>' + itemsHtml(e.vp, 'r') + '</td><td>' + itemsHtml((e.cong || []).filter(x => x.kieu !== 'td'), 'p') + '</td><td>' + itemsHtml((e.cong || []).filter(x => x.kieu === 'td'), 'g') + '</td>' +
             '<td class="wrapc">' + esc(e.nhanXet) + '</td><td>' + (e.xepLoai ? '<span class="pill ' + e.xepLoai + '">' + CORE_RATE[e.xepLoai] + '</span>' : '') + '</td>' +
-            '<td class="sign"><b>' + esc(e.gvName) + '</b>' + fdt(e.signedAt) + (last ? '<span class="edit">Sửa: ' + esc(last.by) + ' · ' + fdt(last.at) + (e.edits.length > 1 ? ' (' + e.edits.length + ' lần)' : '') + '</span>' : '') + '</td>';
+            '<td class="sign">' + (sg ? '<img class="sigimg" src="' + sg + '" alt="">' : '') + '<b>' + esc(e.gvName) + '</b>' + fdt(e.signedAt) + editNote(e) + '</td>';
         } else {
-          h += '<td colspan="10">' + (loading ? '<span class="muted">…</span>' : (locked ? '' : '<span class="addhint">+ Ghi tiết ' + t + ' buổi ' + (b === 'S' ? 'sáng' : 'chiều') + '</span>')) + '</td>';
+          const del = raw && raw.deleted ? '<span class="deln' + (late ? ' late' : '') + '">Đã xoá: ' + esc(coreLastEdit(raw).by) + ' · ' + fdt(coreLastEdit(raw).at) + '</span> ' : '';
+          const plan = tk ? '<span class="tkb">' + esc(tk.mon) + (tk.phanMon ? ' – ' + esc(tk.phanMon) : '') + (tk.gvName ? ' · ' + esc(tk.gvName) : '') + '</span> ' : '';
+          h += '<td colspan="10">' + (loading ? '<span class="muted">…</span>' : plan + del + (locked ? '' : '<span class="addhint">+ Ghi tiết ' + t + ' buổi ' + (b === 'S' ? 'sáng' : 'chiều') + '</span>')) + '</td>';
         }
         h += '</tr>';
       }
@@ -1021,9 +1485,9 @@ function renderGrid(loading) {
   }
   $('sheet').innerHTML = h + '</tbody></table>';
   $('sheet').querySelectorAll('tr.slot').forEach(tr => tr.addEventListener('click', () => {
-    const e = slots[tr.dataset.k];
-    if (!e && !can) return;
-    openSlot(tr.dataset.k, e || null);
+    const raw = slots[tr.dataset.k];
+    if ((!raw || raw.deleted) && !can) return;
+    openSlot(tr.dataset.k, raw || null);
   }));
 }
 function hsField(lop, val, dis) {
@@ -1050,60 +1514,113 @@ function collectItems(box) {
   return [...box.querySelectorAll('.itemrow')].map(r => ({ hs: r.querySelector('[data-f=hs]').value.trim(), ma: r.querySelector('[data-f=ma]').value, ghiChu: r.querySelector('[data-f=ghiChu]').value.trim() }))
     .filter(x => x.hs || x.ma);
 }
-function openSlot(k, e) {
+// Điểm danh: bấm tên để chuyển Có mặt → Vắng có phép (P) → Vắng không phép (KP)
+function attendanceHtml(lop, ds, can) {
+  const r = roster(lop), m = {}; (ds || []).forEach(x => m[x.hs] = x.loai);
+  return '<div class="box att" id="attBox"><h4><span>Điểm danh · sĩ số ' + r.length + '</span>' + (can ? '<button type="button" class="btn sm" id="attAll">Tất cả có mặt</button>' : '') + '</h4>' +
+    '<div class="att-sum" id="attSum"></div>' +
+    '<div class="att-grid">' + r.map((n, i) => '<button type="button" class="att-b ' + (m[n] || '') + '" data-n="' + esc(n) + '"' + (can ? '' : ' disabled') + '><span class="no">' + (i + 1) + '</span>' + esc(n) + '<em>' + (m[n] === 'KP' ? 'KP' : m[n] === 'P' ? 'P' : '') + '</em></button>').join('') + '</div>' +
+    (can ? '<div class="muted" style="font-size:12px">Bấm tên học sinh: lần 1 = vắng có phép (P), lần 2 = vắng không phép (KP), lần 3 = có mặt.</div>' : '') + '</div>';
+}
+function bindAttendance() {
+  const box = $('attBox'); if (!box) return;
+  const sum = () => {
+    const bs = [...box.querySelectorAll('.att-b')], p = bs.filter(b => b.classList.contains('P')).length, kp = bs.filter(b => b.classList.contains('KP')).length;
+    $('attSum').innerHTML = '<span class="pill A">Có mặt ' + (bs.length - p - kp) + '</span> <span class="pill C">Vắng P ' + p + '</span> <span class="pill D">Vắng KP ' + kp + '</span>';
+  };
+  box.querySelectorAll('.att-b').forEach(b => b.onclick = () => {
+    const cur = b.classList.contains('KP') ? 'KP' : b.classList.contains('P') ? 'P' : '';
+    const nx = cur === '' ? 'P' : cur === 'P' ? 'KP' : '';
+    b.classList.remove('P', 'KP'); if (nx) b.classList.add(nx); b.querySelector('em').textContent = nx; sum();
+  });
+  if ($('attAll')) $('attAll').onclick = () => { box.querySelectorAll('.att-b').forEach(b => { b.classList.remove('P', 'KP'); b.querySelector('em').textContent = ''; }); sum(); };
+  sum();
+}
+function collectAttendance() {
+  const box = $('attBox'); if (!box) return null;
+  return [...box.querySelectorAll('.att-b')].filter(b => b.classList.contains('P') || b.classList.contains('KP')).map(b => ({ hs: b.dataset.n, loai: b.classList.contains('KP') ? 'KP' : 'P' }));
+}
+function openSlot(k, raw) {
   const u = S.me, d = +k[0], b = k[1], t = +k[2], lop = S.lop, week = S.week;
+  const e = raw && !raw.deleted ? raw : null, tomb = raw && raw.deleted ? raw : null;
+  const tk = ((S.weekDoc && S.weekDoc.tkb) || { slots: {} }).slots[k];
   const can = coreCanSign(u, lop) && (!e || u.admin || e.gvId === u.id);
-  const v = e || { mon: u.mon || '', tietPPCT: '', tenBai: '', vang: '', nhanXet: '', xepLoai: 'A', vp: [], cong: [] };
+  const own = tk && (!tk.gvId || tk.gvId === u.id);
+  const base = { mon: own ? tk.mon : (u.mon || (tk ? tk.mon : '')), phanMon: own ? tk.phanMon || '' : '', tietPPCT: '', tenBai: '', vang: '', nhanXet: '', xepLoai: 'A', vp: [], cong: [], vangDs: [] };
+  const v = e || (tomb ? Object.assign({}, base, tomb) : base);
   const dis = can ? '' : ' disabled';
   const title = CORE_DAYS[d] + ' ' + vn(dateOf(week, d)) + ' · ' + (b === 'S' ? 'Sáng' : 'Chiều') + ' tiết ' + t + ' · Lớp ' + lop;
-  const hist = e && e.edits && e.edits.length ? '<div class="hist"><b>Lịch sử sửa:</b><br>' + e.edits.map(x => esc(x.by) + ' sửa lúc ' + fdt(x.at)).join('<br>') + '</div>' : '';
-  const noRoster = !roster(lop).length ? '<div class="note">Lớp ' + esc(lop) + ' chưa có danh sách học sinh. GVCN cần nhập danh sách ở mục <b>Học sinh lớp</b> để chọn tên nhanh và tính điểm chính xác.</div>' : '';
+  const hist = raw && raw.edits && raw.edits.length ? '<div class="hist' + (isLate(raw) ? ' late' : '') + '"><b>Lịch sử:</b> ký lần đầu ' + fdt(raw.firstSignedAt || raw.signedAt) + '<br>' + raw.edits.map(x => (CORE_EDIT_TYPES[x.type] || 'Sửa') + ': ' + esc(x.by) + ' lúc ' + fdt(x.at)).join('<br>') + '</div>' : '';
+  const first = raw ? Date.parse(raw.firstSignedAt || raw.signedAt) : NaN;
+  const overdue = raw && isFinite(first) && Date.now() - first > graceH() * 3600e3;
+  const warn = can && raw && overdue ? '<div class="note late-note">Đã quá ' + graceH() + ' giờ kể từ lần ký đầu (' + fdt(raw.firstSignedAt || raw.signedAt) + '). Nếu ' + (tomb ? 'ký lại' : 'sửa hoặc xoá') + ', tiết sẽ hiện <b>chữ đỏ đậm</b> và được báo cho Ban giám hiệu.</div>' : '';
+  const tkNote = tk && tk.gvId && tk.gvId !== u.id ? '<div class="note">Theo thời khoá biểu, tiết này là <b>' + esc(tk.mon) + '</b> của <b>' + esc(tk.gvName) + '</b>. Nếu dạy thay, hãy ghi rõ trong nhận xét.</div>' : '';
+  const noRoster = !roster(lop).length ? '<div class="note">Lớp ' + esc(lop) + ' chưa có danh sách học sinh. GVCN cần nhập danh sách ở mục <b>Học sinh lớp</b> để điểm danh và chọn tên nhanh.</div>' : '';
   const box = (cls, title, loai, list, addLbl) => '<div class="box ' + cls + '" id="box_' + loai + '"><h4><span>' + title + '</span>' + (can ? '<button type="button" class="btn sm" data-add>' + addLbl + '</button>' : '') + '</h4>' +
     (can ? '<div class="items">' + (list || []).map(x => itemRowHtml(loai, lop, x)).join('') + '</div>' : '<div>' + (itemsHtml(list, cls === 'r' ? 'r' : 'g') || '<span class="muted">Không có</span>') + '</div>') + '</div>';
+  const canDel = e && (u.admin || (e.gvId === u.id && S.cfg.rules.teacherDelete && srvOk()));
+  const pmList = (PHAN_MON_GOI_Y[String(v.mon).toLowerCase()] || []).concat(tk && tk.phanMon ? [tk.phanMon] : []);
   openModal(
     '<div class="dlg-h"><h3>' + esc(title) + '</h3><button class="x" data-close aria-label="Đóng">×</button></div>' +
     '<form id="slotForm"><div class="dlg-b">' +
-    (e ? '<div class="muted" style="font-size:13px">Ký bởi <b>' + esc(e.gvName) + '</b> lúc ' + fdt(e.signedAt) + (can ? ' · Lưu lại sẽ đánh dấu <b style="color:var(--red)">đã sửa</b> kèm tên và thời gian.' : '') + '</div>' : '') + hist +
-    '<div class="grid g3"><label class="f"><span>Môn học <span class="req">*</span></span><input class="in" id="fMon" list="dlMon" required value="' + esc(v.mon) + '"' + dis + '></label>' +
+    (e ? '<div class="muted" style="font-size:13px">' + (sigOf(e.gvId) ? '<img class="sigimg inl" src="' + sigOf(e.gvId) + '" alt=""> ' : '') + 'Ký bởi <b>' + esc(e.gvName) + '</b> lúc ' + fdt(e.signedAt) + '</div>' : '') +
+    (tomb ? '<div class="note">Tiết này đã bị <b>xoá</b> bởi ' + esc(coreLastEdit(tomb).by) + ' lúc ' + fdt(coreLastEdit(tomb).at) + '. Nội dung cũ được điền sẵn; ký lại sẽ được ghi vào lịch sử.</div>' : '') +
+    hist + warn + tkNote +
+    '<div class="grid g4"><label class="f"><span>Môn học <span class="req">*</span></span><input class="in" id="fMon" list="dlMon" required value="' + esc(v.mon) + '"' + dis + '></label>' +
+    '<label class="f" id="fPmWrap"' + (hasPhanMon(v.mon) || v.phanMon ? '' : ' hidden') + '><span>Phân môn <span class="muted" style="font-weight:400">(bỏ trống nếu không có)</span></span><input class="in" id="fPm" list="dlPm" value="' + esc(v.phanMon || '') + '"' + dis + '></label>' +
     '<label class="f">Tiết PPCT<input class="in" id="fPPCT" inputmode="numeric" value="' + esc(v.tietPPCT) + '"' + dis + '></label>' +
-    '<label class="f">Học sinh vắng<input class="in" id="fVang" placeholder="VD: An (P), Bình (KP)" value="' + esc(v.vang) + '"' + dis + '></label></div>' +
+    (roster(lop).length ? '' : '<label class="f">Học sinh vắng<input class="in" id="fVang" placeholder="VD: An (P), Bình (KP)" value="' + esc(v.vang) + '"' + dis + '></label>') + '</div>' +
     '<label class="f"><span>Tên bài / Nội dung dạy <span class="req">*</span></span><input class="in" id="fBai" required value="' + esc(v.tenBai) + '"' + dis + '></label>' +
-    noRoster +
+    noRoster + (roster(lop).length ? attendanceHtml(lop, v.vangDs, can) : '') +
     box('r', 'Học sinh vi phạm', 'tru', v.vp, '+ Thêm vi phạm') +
     box('g', 'Điểm hồng · Tuyên dương', 'cong', v.cong, '+ Thêm khen thưởng') +
     '<label class="f">Nhận xét giờ dạy<textarea class="in" id="fNX" placeholder="Lớp chuẩn bị bài, tinh thần học tập…"' + dis + '>' + esc(v.nhanXet) + '</textarea></label>' +
     '<div><div class="f">Xếp loại tiết học</div><div class="rates" style="margin-top:6px">' + Object.keys(CORE_RATE).map(r => '<label><input type="radio" name="xl" value="' + r + '"' + (v.xepLoai === r ? ' checked' : '') + dis + '> ' + r + ' – ' + CORE_RATE[r] + ' <span class="muted">(' + signed(S.cfg.points.tiet[r]) + ' lớp)</span></label>').join('') + '</div></div>' +
-    (can ? '<label class="sigline"><input type="checkbox" id="fSign"' + (e ? ' checked' : '') + '> <span>Tôi, <b>' + esc(u.name) + '</b>, xác nhận ký sổ đầu bài tiết này.</span></label>' : '') +
+    (can ? '<label class="sigline"><input type="checkbox" id="fSign"' + (e ? ' checked' : '') + '> ' + (sigOf(u.id) ? '<img class="sigimg inl" src="' + sigOf(u.id) + '" alt="">' : '') + '<span>Tôi, <b>' + esc(u.name) + '</b>, xác nhận ký sổ đầu bài tiết này.</span></label>' : '') +
     '<div class="err" id="fErr"></div></div><div class="dlg-f">' +
-    (e && u.admin ? '<button class="btn danger" type="button" id="fDel">Xoá tiết</button><span style="flex:1"></span>' : '') +
-    '<button class="btn" type="button" data-close>' + (can ? 'Huỷ' : 'Đóng') + '</button>' +
-    (can ? '<button class="btn primary" type="submit" id="fSave">' + (e ? 'Lưu chỉnh sửa' : 'Lưu và ký') + '</button>' : '') +
-    '</div></form><datalist id="dlMon">' + SUBJECTS.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>');
+    (canDel ? '<button class="btn danger" type="button" id="fDel">' + (u.admin && e.gvId !== u.id ? 'Xoá tiết' : 'Xoá để ký lại') + '</button>' : '') +
+    (tomb && u.admin ? '<button class="btn danger" type="button" id="fHard">Xoá hẳn dấu vết</button>' : '') +
+    '<span style="flex:1"></span><button class="btn" type="button" data-close>' + (can ? 'Huỷ' : 'Đóng') + '</button>' +
+    (can ? '<button class="btn primary" type="submit" id="fSave">' + (e ? 'Lưu chỉnh sửa' : tomb ? 'Ký lại' : 'Lưu và ký') + '</button>' : '') +
+    '</div></form><datalist id="dlMon">' + SUBJECTS.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist><datalist id="dlPm">' + [...new Set(pmList)].map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>', 'wide');
   if (!can) return;
+  bindAttendance();
   bindItems($('box_tru'), 'tru', lop);
   bindItems($('box_cong'), 'cong', lop);
-  if ($('fDel')) confirmBtn($('fDel'), 'Bấm lần nữa để xoá', async () => {
-    try { const r = await api('deleteSlot', { lop: lop, week: week, key: k }); if (lop === S.lop && week === S.week) { S.weekDoc = r.doc; renderGrid(); } closeModal(); toast('Đã xoá tiết.'); }
-    catch (er) { toast('Không xoá được: ' + er.message); }
+  $('fMon').addEventListener('input', () => {
+    const m = $('fMon').value; $('fPmWrap').hidden = !hasPhanMon(m) && !$('fPm').value;
+    $('dlPm').innerHTML = (PHAN_MON_GOI_Y[m.trim().toLowerCase()] || []).map(s => '<option value="' + esc(s) + '">').join('');
   });
+  const doDel = async hard => {
+    try { const r = await api('deleteSlot', { lop: lop, week: week, key: k, hard: !!hard }); if (lop === S.lop && week === S.week) { S.weekDoc = Object.assign(r.doc, { tkb: S.weekDoc && S.weekDoc.tkb }); renderGrid(); } closeModal(); toast(hard ? 'Đã xoá hẳn tiết.' : 'Đã xoá tiết. Bấm vào tiết để ký lại.'); loadEdits(false); }
+    catch (er) { toast('Không xoá được: ' + er.message); }
+  };
+  if ($('fDel')) confirmBtn($('fDel'), overdue ? 'Quá hạn – vẫn xoá?' : 'Bấm lần nữa để xoá', () => doDel(false));
+  if ($('fHard')) confirmBtn($('fHard'), 'Bấm lần nữa để xoá hẳn', () => doDel(true));
   $('slotForm').addEventListener('submit', async ev => {
     ev.preventDefault();
     if (!$('fSign').checked) { $('fErr').textContent = 'Đánh dấu ô xác nhận ký sổ trước khi lưu.'; return; }
     const vp = collectItems($('box_tru')), cong = collectItems($('box_cong'));
     const bad = vp.concat(cong).find(x => !x.hs || !x.ma);
     if (bad) { $('fErr').textContent = 'Mỗi dòng vi phạm / khen thưởng cần chọn đủ học sinh và nội dung (hoặc bấm × để bỏ dòng).'; return; }
-    const fields = { mon: $('fMon').value.trim(), tietPPCT: $('fPPCT').value.trim(), tenBai: $('fBai').value.trim(), vang: $('fVang').value.trim(),
+    const att = collectAttendance();
+    const fields = { mon: $('fMon').value.trim(), phanMon: $('fPmWrap').hidden ? '' : $('fPm').value.trim(), tietPPCT: $('fPPCT').value.trim(), tenBai: $('fBai').value.trim(),
+      vang: att ? coreVangText(att) : ($('fVang') ? $('fVang').value.trim() : ''), vangDs: att || [],
       nhanXet: $('fNX').value.trim(), xepLoai: (document.querySelector('input[name=xl]:checked') || {}).value || '', vp: vp, cong: cong };
     if (!fields.mon || !fields.tenBai) { $('fErr').textContent = 'Cần nhập Môn học và Tên bài.'; return; }
     const btn = $('fSave'); btn.disabled = true; btn.textContent = 'Đang lưu…';
     try {
       const r = await api('saveSlot', { lop: lop, week: week, key: k, fields: fields });
-      if (lop === S.lop && week === S.week) { S.weekDoc = r.doc; renderGrid(); }
+      if (lop === S.lop && week === S.week) { S.weekDoc = Object.assign(r.doc, { tkb: S.weekDoc && S.weekDoc.tkb }); renderGrid(); }
       closeModal();
-      toast(!r.changed ? 'Không có thay đổi nào.' : e ? 'Đã lưu chỉnh sửa. Tiết được tô đỏ kèm tên và giờ sửa.' : 'Đã ghi và ký tiết ' + t + '.');
+      const ne = r.doc.slots[k];
+      toast(!r.changed ? 'Không có thay đổi nào.' : isLate(ne) ? 'Đã lưu. Thay đổi sau ' + graceH() + ' giờ nên tiết hiện chữ đỏ đậm.' : e ? 'Đã lưu chỉnh sửa.' : tomb ? 'Đã ký lại tiết ' + t + '.' : 'Đã ghi và ký tiết ' + t + '.');
+      if (r.changed && (e || tomb)) loadEdits(false);
+      renderWatch('watchSdb', [S.lop], false);
     } catch (er) { btn.disabled = false; btn.textContent = 'Thử lưu lại'; $('fErr').textContent = 'Không lưu được: ' + er.message; }
   });
 }
+
 
 /* ===================================================================
  * TÍNH ĐIỂM (dùng cho thi đua, học sinh, báo cáo)
@@ -1112,9 +1629,9 @@ function openSlot(k, e) {
 function eventsOf(data) {
   const ev = [];
   (data.weeks || []).forEach(doc => Object.keys(doc.slots || {}).forEach(k => {
-    const e = doc.slots[k]; if (!e) return;
+    const e = doc.slots[k]; if (!e || e.deleted) return;
     const iso = dateOf(doc.week, +k[0]);
-    const src = 'Tiết ' + k[2] + ' ' + (k[1] === 'S' ? 'sáng' : 'chiều') + ' · ' + e.mon;
+    const src = 'Tiết ' + k[2] + ' ' + (k[1] === 'S' ? 'sáng' : 'chiều') + ' · ' + monText(e);
     (e.vp || []).forEach(x => ev.push({ ngay: iso, tuan: doc.week, lop: doc.lop, hs: x.hs, loai: 'tru', ma: x.ma, ten: x.ten, kieu: '', diemHS: x.diemHS, diemLop: x.diemLop, ghiChu: x.ghiChu, src: src, by: e.gvName, at: e.signedAt }));
     (e.cong || []).forEach(x => ev.push({ ngay: iso, tuan: doc.week, lop: doc.lop, hs: x.hs, loai: 'cong', ma: x.ma, ten: x.ten, kieu: x.kieu, diemHS: x.diemHS, diemLop: x.diemLop, ghiChu: x.ghiChu, src: src, by: e.gvName, at: e.signedAt }));
   }));
@@ -1126,7 +1643,7 @@ function classWeekScore(lop, week, data) {
   const P = S.cfg.points;
   const doc = (data.weeks || []).find(d => d.lop === lop && d.week === week);
   let tiet = 0, nTiet = 0;
-  Object.values((doc && doc.slots) || {}).forEach(e => { if (!e) return; nTiet++; tiet += Number(P.tiet[e.xepLoai] || 0); });
+  Object.values((doc && doc.slots) || {}).forEach(e => { if (!e || e.deleted) return; nTiet++; tiet += Number(P.tiet[e.xepLoai] || 0); });
   let tru = 0, cong = 0, nVP = 0;
   eventsOf({ weeks: doc ? [doc] : [], nenep: (data.nenep || []).filter(r => r.lop === lop && r.tuan === week) }).forEach(x => {
     if (x.loai === 'tru') { tru += x.diemLop; nVP++; } else cong += x.diemLop;
@@ -1185,11 +1702,13 @@ function renderNn() {
         '<div class="card"><div class="card-h"><h2>Ghi nhận nề nếp</h2></div><div class="card-b muted">Đoàn trường, Ban giám hiệu và GVCN ghi nhận nề nếp ở đây. Bạn có thể xem bảng thi đua bên cạnh.</div></div>') +
       '<div class="card"><div class="card-h"><h2>Bảng thi đua tuần</h2><span class="muted" style="font-size:12.5px">Điểm chuẩn ' + S.cfg.points.lopBase + ' · cộng/trừ theo xếp loại tiết, vi phạm và nề nếp</span></div><div class="card-b" id="nnRank"><div class="empty">Đang tải…</div></div></div>' +
     '</div>' +
+    '<div id="watchAll"></div>' +
     '<div class="card"><div class="card-h"><h2>Nhật ký ghi nhận trong tuần</h2><select class="in" id="nnFilter" style="max-width:180px"></select></div><div class="card-b" id="nnLog"></div></div>';
   bindWeekNav('nw', loadNn);
   $('nnReload').onclick = loadNn;
   if (canAdd) renderNnForm();
   loadNn();
+  if (S.me.admin || has('BGH') || has('DOAN')) renderWatch('watchAll', allClasses(), true);
 }
 async function loadNn() {
   const w = S.week;
@@ -1265,8 +1784,31 @@ function renderNnData() {
 }
 
 /* ===================================================================
- * HỌC SINH LỚP (GVCN nhập danh sách, xem điểm tháng)
+ * HỌC SINH LỚP (GVCN nhập danh sách + phụ huynh, xem điểm tháng)
  * =================================================================== */
+const HS_TPL_HEAD = ['Lớp', 'STT', 'Họ và tên', 'Ngày sinh', 'Họ tên phụ huynh', 'SĐT phụ huynh'];
+function info(lop, n) { return ((S.cfg.hsInfo || {})[lop] || {})[n] || {}; }
+function rosterLines(lop) { return roster(lop).map(n => { const x = info(lop, n); return [n, x.ns || '', x.ph || '', x.sdt || ''].join('\t').replace(/\t+$/, ''); }).join('\n'); }
+function parseRosterLines(txt) {
+  return txt.split(/\n/).map(l => l.split('\t').map(s => s.trim())).filter(c => c[0] && !/^\d+$/.test(c[0])).map(c => ({ ten: c[0].replace(/\s+/g, ' '), ns: c[1] || '', ph: c[2] || '', sdt: c[3] || '' }));
+}
+// Đọc bảng học sinh từ Excel: tự nhận cột theo tiêu đề (Lớp, Họ và tên, Ngày sinh, Phụ huynh, SĐT)
+function parseStudentTable(rows) {
+  let hi = -1, col = {};
+  for (let i = 0; i < Math.min(rows.length, 12) && hi < 0; i++) {
+    const r = rows[i].map(x => x.toLowerCase());
+    const ti = r.findIndex(c => /h[ọo].*t[êe]n|^t[êe]n|h[ọo] v[àa] t[êe]n/.test(c) && !/ph[ụu] huynh|cha|m[ẹe]/.test(c));
+    if (ti >= 0) { hi = i; col.ten = ti; r.forEach((c, j) => { if (/^l[ớo]p/.test(c)) col.lop = j; else if (/ng[àa]y sinh|ns/.test(c)) col.ns = j; else if (/(s[đd]t|đi[ệe]n tho[ạa]i)/.test(c)) col.sdt = j; else if (/ph[ụu] huynh|cha|m[ẹe]/.test(c)) col.ph = j; }); }
+  }
+  if (hi < 0) { hi = -1; col = rows[0] && rows[0].length > 2 ? { lop: 0, ten: 2, ns: 3, ph: 4, sdt: 5 } : { ten: rows[0] && rows[0].length > 1 ? 1 : 0 }; }
+  return rows.slice(hi + 1).map(r => ({ lop: col.lop != null ? coreUp(r[col.lop]) : '', ten: String(r[col.ten] || '').replace(/\s+/g, ' ').trim(), ns: col.ns != null ? String(r[col.ns] || '').trim() : '', ph: col.ph != null ? String(r[col.ph] || '').trim() : '', sdt: col.sdt != null ? String(r[col.sdt] || '').trim() : '' }))
+    .filter(x => x.ten && !/^\d+$/.test(x.ten));
+}
+function studentTemplate(lops) {
+  const rows = [HS_TPL_HEAD];
+  (lops.length ? lops : ['10A1']).forEach(l => { const r = roster(l); if (r.length) r.forEach((n, i) => { const x = info(l, n); rows.push([l, i + 1, n, x.ns || '', x.ph || '', x.sdt || '']); }); else rows.push([l, 1, 'Nguyễn Văn An', '15/03/2010', 'Nguyễn Văn Bình', '0912345678'], [l, 2, 'Trần Thị Bích', '02/11/2010', 'Trần Văn Cường', '0987654321']); });
+  saveXlsx('Mau_DanhSachHocSinh' + (lops.length === 1 ? '_' + lops[0] : '') + '.xlsx', [{ name: 'HocSinh', cols: [8, 6, 28, 13, 26, 15], rows: rows }]);
+}
 function hsClasses() { return isLeader() ? allClasses() : (S.me.cn ? [S.me.cn] : []); }
 function renderHs() {
   const lops = hsClasses();
@@ -1277,32 +1819,35 @@ function renderHs() {
     '<div class="card"><div class="toolbar"><label class="f" style="min-width:150px">Lớp' + classSelect('hsLop', lops, lop) + '</label>' +
     '<label class="f" style="min-width:170px">Tháng<select class="in" id="hsMonth">' + monthsOfYear().map(m => '<option value="' + m.ym + '"' + (m.ym === S.hs.month ? ' selected' : '') + '>' + m.label + '</option>').join('') + '</select></label>' +
     '<div class="grow"></div><span class="muted" style="font-size:12.5px">GVCN: <b>' + esc(gvcnOf(lop) || '—') + '</b> · Sĩ số: <b>' + roster(lop).length + '</b></span></div></div>' +
-    '<div class="two" style="grid-template-columns:minmax(0,1fr) minmax(0,360px)">' +
+    '<div id="watchHs"></div>' +
+    '<div class="two" style="grid-template-columns:minmax(0,1fr) minmax(0,400px)">' +
       '<div class="card"><div class="card-h"><h2>Điểm rèn luyện tháng</h2><span class="muted" style="font-size:12.5px">' + S.cfg.points.hsBase + ' điểm, trừ theo vi phạm' + (S.cfg.points.congBuTru ? ', khen thưởng bù (tối đa ' + S.cfg.points.hsBase + ')' : '') + '</span></div><div class="card-b" id="hsTable"><div class="empty">Đang tải…</div></div></div>' +
       '<div class="card"><div class="card-h"><h2>Danh sách lớp</h2></div><div class="card-b">' +
-        (can ? '<div class="muted" style="font-size:12.5px">Mỗi dòng một học sinh, theo thứ tự danh sách. Có thể nhập từ file Excel/CSV (cột "Họ và tên"). Không đổi tên học sinh giữa năm để giữ nguyên lịch sử điểm.</div>' +
-          '<textarea class="in" id="hsText" rows="14">' + esc(roster(lop).join('\n')) + '</textarea>' +
-          '<div class="row"><label class="btn sm" style="cursor:pointer">Nhập từ file<input type="file" id="hsFile" accept=".xlsx,.xls,.csv,.txt" hidden></label><span class="muted" id="hsCount"></span><div style="flex:1"></div><button class="btn primary sm" id="hsSave" type="button">Lưu danh sách</button></div>'
+        (can ? '<div class="muted" style="font-size:12.5px">Mỗi dòng một học sinh theo thứ tự: <b>Họ tên ⇥ Ngày sinh ⇥ Phụ huynh ⇥ SĐT</b> (có thể dán thẳng từ Excel). Không đổi tên học sinh giữa năm để giữ lịch sử điểm.</div>' +
+          '<textarea class="in roster-ta" id="hsText" rows="14" spellcheck="false">' + esc(rosterLines(lop)) + '</textarea>' +
+          '<div class="row"><label class="btn sm" style="cursor:pointer">Nhập từ Excel<input type="file" id="hsFile" accept=".xlsx,.xls,.csv,.txt" hidden></label><button class="btn sm" type="button" id="hsTpl">Tải file mẫu</button><span class="muted" id="hsCount"></span><div style="flex:1"></div><button class="btn primary sm" id="hsSave" type="button">Lưu danh sách</button></div>'
           : '<div class="muted">Chỉ GVCN lớp ' + esc(lop) + ' hoặc quản trị được sửa danh sách.</div><ol style="margin:0;padding-left:22px">' + roster(lop).map(n => '<li>' + esc(n) + '</li>').join('') + '</ol>') +
       '</div></div>' +
     '</div>';
   $('hsLop').onchange = e => { S.hs.lop = e.target.value; renderHs(); };
   $('hsMonth').onchange = e => { S.hs.month = e.target.value; loadHs(); };
   if (can) {
-    const cnt = () => $('hsCount').textContent = $('hsText').value.split(/\n/).filter(x => x.trim()).length + ' học sinh';
+    const cnt = () => { const l = parseRosterLines($('hsText').value); $('hsCount').textContent = l.length + ' học sinh · ' + l.filter(x => x.sdt).length + ' có SĐT phụ huynh'; };
     $('hsText').oninput = cnt; cnt();
+    $('hsTpl').onclick = () => studentTemplate([lop]);
     $('hsFile').onchange = e => { const f = e.target.files[0]; if (!f) return; readTable(f, rows => {
-      let col = -1, start = 0;
-      for (let i = 0; i < Math.min(rows.length, 10) && col < 0; i++) rows[i].forEach((c, j) => { if (col < 0 && /t[êe]n/i.test(c)) { col = j; start = i + 1; } });
-      if (col < 0) { col = rows[0] && rows[0].length > 1 ? 1 : 0; start = 0; }
-      const names = rows.slice(start).map(r => (r[col] || '').trim()).filter(n => n && !/^\d+$/.test(n));
-      if (!names.length) { toast('Không tìm thấy cột họ tên trong file.'); return; }
-      $('hsText').value = names.join('\n'); cnt(); toast('Đã đọc ' + names.length + ' học sinh. Bấm "Lưu danh sách" để lưu.');
+      let list = parseStudentTable(rows);
+      if (list.some(x => x.lop)) list = list.filter(x => !x.lop || x.lop === lop);
+      if (!list.length) { toast('Không tìm thấy cột họ tên của lớp ' + lop + ' trong file.'); return; }
+      $('hsText').value = list.map(x => [x.ten, x.ns, x.ph, x.sdt].join('\t').replace(/\t+$/, '')).join('\n'); cnt();
+      toast('Đã đọc ' + list.length + ' học sinh. Bấm "Lưu danh sách" để lưu.');
     }); };
     $('hsSave').onclick = async () => {
+      const list = parseRosterLines($('hsText').value);
       try {
-        const r = await api('saveRoster', { lop: lop, students: $('hsText').value.split(/\n/) });
-        S.cfg.students[r.lop] = r.students; toast('Đã lưu ' + r.students.length + ' học sinh lớp ' + r.lop + '.'); renderHs();
+        const r = await api('saveRoster', { lop: lop, withInfo: true, students: list });
+        S.cfg.students[r.lop] = r.students; S.cfg.hsInfo = S.cfg.hsInfo || {}; if (r.info) S.cfg.hsInfo[r.lop] = r.info;
+        toast('Đã lưu ' + r.students.length + ' học sinh lớp ' + r.lop + '.'); renderHs();
       } catch (er) { toast(er.message); }
     };
   }
@@ -1314,23 +1859,54 @@ async function loadHs() {
   try {
     const mb = monthBounds(ym), r = await loadEvents([lop], mb.from, mb.to);
     if (lop !== S.hs.lop || ym !== S.hs.month || S.view !== 'hs') return;
-    const rows = studentScores(lop, r.ev);
+    const rows = studentScores(lop, r.ev), abs = absencesOf(r.data).filter(a => a.ngay >= mb.from && a.ngay <= mb.to);
+    const watch = ym === curMonth() ? await computeWatch([lop]).catch(() => []) : [];
+    if ($('watchHs')) $('watchHs').innerHTML = ym === curMonth() ? watchHtml(watch, false) : '';
+    const flagged = new Set(watch.map(x => x.ten));
     const cnt = { tot: 0, kha: 0, dat: 0, cd: 0 }; rows.forEach(x => cnt[x.xl]++);
     $('hsTable').innerHTML = !rows.length ? '<div class="empty">Lớp chưa có danh sách học sinh.</div>' :
-      '<div class="kpis">' + Object.keys(RANK_HK).map(k => '<span class="stat"><span class="pill ' + k + '">' + RANK_HK[k] + '</span><b>' + cnt[k] + '</b></span>').join('') + '</div>' +
-      '<div class="tblwrap preview"><table class="lst"><thead><tr><th>STT</th><th>Họ và tên</th><th class="n">Lần VP</th><th class="n">Điểm trừ</th><th class="n">Điểm hồng</th><th class="n">Tuyên dương</th><th class="n">Điểm tháng</th><th>Hạnh kiểm</th></tr></thead><tbody>' +
-      rows.map(x => '<tr class="click" data-n="' + esc(x.ten) + '"><td>' + x.stt + '</td><td><b>' + esc(x.ten) + '</b>' + (x.inRoster ? '' : ' <span class="muted">(ngoài DS)</span>') + '</td><td class="n">' + x.nVP + '</td><td class="n' + (x.tru ? ' neg' : '') + '">' + (x.tru ? '−' + x.tru : '0') + '</td><td class="n">' + x.dh + '</td><td class="n">' + x.td + '</td><td class="n"><span class="score">' + x.diem + '</span></td><td><span class="pill ' + x.xl + '">' + RANK_HK[x.xl] + '</span></td></tr>').join('') +
-      '</tbody></table></div><div class="muted" style="font-size:12.5px">Bấm vào tên học sinh để xem chi tiết.</div>';
-    $('hsTable').querySelectorAll('tr.click').forEach(tr => tr.onclick = () => { const x = rows.find(y => y.ten === tr.dataset.n); if (x) openStudent(lop, ym, x); });
+      '<div class="kpis">' + Object.keys(RANK_HK).map(k => '<span class="stat"><span class="pill ' + k + '">' + RANK_HK[k] + '</span><b>' + cnt[k] + '</b></span>').join('') + (flagged.size ? '<span class="stat late">Cần quan tâm <b>' + flagged.size + '</b></span>' : '') + '</div>' +
+      '<div class="tblwrap preview"><table class="lst"><thead><tr><th>STT</th><th>Họ và tên</th><th class="n">Lần VP</th><th class="n">Điểm trừ</th><th class="n">Vắng P</th><th class="n">Vắng KP</th><th class="n">Điểm hồng</th><th class="n">Tuyên dương</th><th class="n">Điểm tháng</th><th>Hạnh kiểm</th></tr></thead><tbody>' +
+      rows.map(x => { const p = abs.filter(a => a.hs === x.ten && a.loai === 'P').length, kp = abs.filter(a => a.hs === x.ten && a.loai === 'KP').length;
+        return '<tr class="click' + (flagged.has(x.ten) ? ' flag' : '') + '" data-n="' + esc(x.ten) + '"><td>' + x.stt + '</td><td><b>' + esc(x.ten) + '</b>' + (x.inRoster ? '' : ' <span class="muted">(ngoài DS)</span>') + (flagged.has(x.ten) ? ' <span class="pill late">Cần quan tâm</span>' : '') + '</td><td class="n">' + x.nVP + '</td><td class="n' + (x.tru ? ' neg' : '') + '">' + (x.tru ? '−' + x.tru : '0') + '</td><td class="n">' + p + '</td><td class="n' + (kp ? ' neg' : '') + '">' + kp + '</td><td class="n">' + x.dh + '</td><td class="n">' + x.td + '</td><td class="n"><span class="score">' + x.diem + '</span></td><td><span class="pill ' + x.xl + '">' + RANK_HK[x.xl] + '</span></td></tr>'; }).join('') +
+      '</tbody></table></div><div class="muted" style="font-size:12.5px">Bấm vào tên học sinh để xem chi tiết và soạn tin nhắn gửi phụ huynh.</div>';
+    $('hsTable').querySelectorAll('tr.click').forEach(tr => tr.onclick = () => { const x = rows.find(y => y.ten === tr.dataset.n); if (x) openStudent(lop, ym, x, abs.filter(a => a.hs === x.ten)); });
   } catch (e) { $('hsTable').innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; }
 }
-function openStudent(lop, ym, x) {
+function openStudent(lop, ym, x, abs) {
+  const mb = monthBounds(ym), inf = info(lop, x.ten), msg = parentMessage(lop, x.ten, mb.from, mb.to > todayISO() ? todayISO() : mb.to, x.ev, abs || []);
   openModal('<div class="dlg-h"><h3>' + esc(x.ten) + ' · Lớp ' + esc(lop) + ' · ' + monthsOfYear().find(m => m.ym === ym).label + '</h3><button class="x" data-close aria-label="Đóng">×</button></div>' +
-    '<div class="dlg-b"><div class="kpis"><span class="stat">Điểm tháng <b>' + x.diem + '</b></span><span class="stat"><span class="pill ' + x.xl + '">' + RANK_HK[x.xl] + '</span></span><span class="stat r">Trừ <b>' + x.tru + '</b></span><span class="stat g">Cộng <b>' + x.cong + '</b></span></div>' +
+    '<div class="dlg-b"><div class="kpis"><span class="stat">Điểm tháng <b>' + x.diem + '</b></span><span class="stat"><span class="pill ' + x.xl + '">' + RANK_HK[x.xl] + '</span></span><span class="stat r">Trừ <b>' + x.tru + '</b></span><span class="stat g">Cộng <b>' + x.cong + '</b></span>' +
+    (inf.ns ? '<span class="stat">Ngày sinh <b>' + esc(inf.ns) + '</b></span>' : '') + (inf.ph || inf.sdt ? '<span class="stat">Phụ huynh <b>' + esc(inf.ph || '') + '</b> ' + esc(inf.sdt || '') + '</span>' : '') + '</div>' +
     (x.ev.length ? '<div class="tblwrap"><table class="lst"><thead><tr><th>Ngày</th><th>Nội dung</th><th class="n">Điểm</th><th>Nguồn · Người ghi</th></tr></thead><tbody>' +
       x.ev.map(e => '<tr><td>' + vnShort(e.ngay) + '</td><td>' + esc(e.ten) + (e.ghiChu ? '<br><span class="muted">' + esc(e.ghiChu) + '</span>' : '') + '</td><td class="n ' + (e.loai === 'tru' ? 'neg">−' : 'pos">+') + e.diemHS + '</td><td>' + esc(e.src) + '<br><span class="muted">' + esc(e.by) + '</span></td></tr>').join('') + '</tbody></table></div>'
-      : '<div class="empty">Không có ghi nhận nào trong tháng.</div>') + '</div>');
+      : '<div class="empty">Không có ghi nhận nào trong tháng.</div>') +
+    ((abs || []).length ? '<div class="muted" style="font-size:13px">Vắng: ' + abs.map(a => vnShort(a.ngay) + ' tiết ' + a.tiet + ' ' + (a.buoi === 'S' ? 'sáng' : 'chiều') + ' (' + a.loai + ')').join('; ') + '</div>' : '') +
+    (coreCanExport(S.me) ? '<div class="box"><h4><span>Tin nhắn gửi phụ huynh</span><button type="button" class="btn sm" id="cpMsg">Sao chép</button></h4><textarea class="in" id="msgTa" rows="4">' + esc(msg) + '</textarea></div>' : '') + '</div>');
+  if ($('cpMsg')) $('cpMsg').onclick = () => copyText($('msgTa').value, $('msgTa'));
 }
+function copyText(text, el) {
+  const ok = () => toast('Đã sao chép. Dán vào Zalo hoặc tin nhắn để gửi phụ huynh.');
+  try { navigator.clipboard.writeText(text).then(ok, () => { el && el.select(); toast('Hãy nhấn Ctrl+C để sao chép.'); }); }
+  catch (e) { if (el) { el.select(); toast('Hãy nhấn Ctrl+C để sao chép.'); } }
+}
+// Soạn tin nhắn báo phụ huynh từ các ghi nhận trong khoảng thời gian
+function parentMessage(lop, ten, from, to, ev, abs) {
+  const vp = ev.filter(e => e.loai === 'tru'), kt = ev.filter(e => e.loai === 'cong');
+  const p = abs.filter(a => a.loai === 'P').length, kp = abs.filter(a => a.loai === 'KP').length;
+  const inf = info(lop, ten), gv = gvcnOf(lop);
+  let s = 'Kính gửi ' + (inf.ph ? 'phụ huynh ' + inf.ph : 'Quý phụ huynh') + ' (em ' + ten + ', lớp ' + lop + '). Từ ' + vn(from) + ' đến ' + vn(to) + ', ';
+  if (!vp.length && !kp && !p) s += 'em thực hiện tốt nội quy, không vi phạm.';
+  else {
+    const parts = [];
+    if (vp.length) parts.push('em có ' + vp.length + ' lần vi phạm: ' + vp.map(e => vnShort(e.ngay) + ' ' + e.ten.toLowerCase()).join('; '));
+    if (kp || p) parts.push('vắng ' + (kp ? kp + ' tiết không phép' : '') + (kp && p ? ', ' : '') + (p ? p + ' tiết có phép' : ''));
+    s += parts.join('; ') + '. Đề nghị gia đình quan tâm, nhắc nhở em.';
+  }
+  if (kt.length) s += ' Em được khen: ' + kt.map(e => e.ten.replace(/^(Điểm hồng|Tuyên dương):\s*/i, '').toLowerCase()).join('; ') + '.';
+  return s + ' GVCN ' + (gv || '') + (S.cfg.school.ten ? ' – ' + S.cfg.school.ten : '') + '.';
+}
+
 
 /* ===================================================================
  * MẪU BÁO CÁO HÀNH CHÍNH — một "spec" dùng chung cho Excel (ExcelJS) và bản in HTML
@@ -1342,6 +1918,8 @@ const XC = { navy: 'FF1D3557', navy2: 'FF26507D', gold: 'FFE3A72F', goldBg: 'FFF
 const XL_STYLE = { tot: [XC.green, XC.greenBg], kha: [XC.blue, XC.blueBg], dat: [XC.amber, XC.amberBg], cd: [XC.red, XC.redBg] };
 const XFONT = 'Times New Roman';
 const hex = argb => '#' + String(argb).slice(2);
+const cellText = v => v && typeof v === 'object' ? v.t : v;
+XC.late = 'FF8B0000'; XC.lateBg = 'FFFBE6E6';
 
 function placeName() { return String(S.cfg.school.diaChi || '').split(',')[0].replace(/^(Xã|Phường|Thị trấn|Thị xã|Thành phố)\s+/i, '').trim(); }
 function dateLine() { const d = new Date(); return (placeName() ? placeName() + ', ' : '') + 'ngày ' + d.getDate() + ' tháng ' + (d.getMonth() + 1) + ' năm ' + d.getFullYear(); }
@@ -1355,10 +1933,13 @@ async function xlsxReport(fileName, specs) {
   let logoId = null;
   const m = String(S.cfg.school.logo || '').match(/^data:image\/(png|jpeg);base64,(.+)$/);
   if (m) logoId = wb.addImage({ base64: m[2], extension: m[1] });
+  specs.forEach(sp => (sp.signs || []).forEach(sg => { const mm = String(sg.sig || '').match(/^data:image\/png;base64,(.+)$/); sg._img = mm ? wb.addImage({ base64: mm[1], extension: 'png' }) : null; sg._size = mm ? pngSize(mm[1]) : null; }));
   specs.forEach(sp => buildSheet(wb, sp, logoId));
   const buf = await wb.xlsx.writeBuffer();
   saveFile(fileName, new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
 }
+// Đọc kích thước ảnh PNG từ phần đầu tệp (IHDR) để giữ đúng tỉ lệ chữ ký
+function pngSize(b64) { try { const s = atob(b64.slice(0, 64)); const n = i => (s.charCodeAt(i) << 24 | s.charCodeAt(i + 1) << 16 | s.charCodeAt(i + 2) << 8 | s.charCodeAt(i + 3)) >>> 0; return { w: n(16), h: n(20) }; } catch (e) { return null; } }
 function buildSheet(wb, sp, logoId) {
   const cols = sp.columns, n = cols.length, sc = S.cfg.school, hasLogo = logoId !== null;
   const ws = wb.addWorksheet(sp.name.replace(/[\\/?*[\]:]/g, '-').slice(0, 31), { properties: { tabColor: { argb: sp.tab || XC.navy } } });
@@ -1423,7 +2004,7 @@ function buildSheet(wb, sp, logoId) {
     const zebra = (sp.group ? sp.group[ri] : ri) % 2 === 1;
     row.forEach((v, ci) => {
       const cell = ws.getCell(r, ci + 1), col = cols[ci];
-      cell.value = v === '' || v == null ? null : v;
+      const cv = cellText(v); cell.value = cv === '' || cv == null ? null : cv;
       const st = (sp.style && sp.style(ri, ci, v, row)) || {};
       cell.font = F({ bold: !!st.bold, italic: !!st.italic, color: { argb: st.color || XC.ink } });
       cell.alignment = { horizontal: col.align || 'center', vertical: 'middle', wrapText: true, indent: col.align === 'left' ? 1 : 0 };
@@ -1431,7 +2012,7 @@ function buildSheet(wb, sp, logoId) {
       const fill = st.fill || (zebra ? XC.zebra : null);
       if (fill) cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: fill } };
     });
-    ws.getRow(r).height = Math.max(18, Math.min(90, 4 + 14.5 * Math.max(1, ...row.map((v, ci) => Math.ceil(String(v == null ? '' : v).length / Math.max(4, (cols[ci].w || 12) * 1.05))))));
+    ws.getRow(r).height = Math.max(18, Math.min(110, 5 + 15 * Math.max(1, ...row.map((v, ci) => Math.ceil(String(cellText(v) == null ? '' : cellText(v)).length / Math.max(4, (cols[ci].w || 12) * 0.92))))));
   });
   (sp.merges || []).forEach(mg => ws.mergeCells(hr + 1 + mg[0], mg[1] + 1, hr + 1 + mg[2], mg[3] + 1));
   if (sp.total && rows.length) {
@@ -1455,7 +2036,19 @@ function buildSheet(wb, sp, logoId) {
     const last = spans[k - 1];
     band(r, last[0], last[1], dateLine(), { italic: true }, { wrapText: false, shrinkToFit: true }); ws.getRow(r).height = 20; r++;
     spans.forEach((s, i) => band(r, s[0], s[1], sp.signs[i].title, { bold: true })); ws.getRow(r).height = 20; r++;
-    spans.forEach((s, i) => band(r, s[0], s[1], sp.signs[i].note || '(Ký, ghi rõ họ tên)', { italic: true, size: 11, color: { argb: XC.muted } })); r++;
+    spans.forEach((s, i) => band(r, s[0], s[1], sp.signs[i].note || '(Ký, ghi rõ họ tên)', { italic: true, size: 11, color: { argb: XC.muted } }));
+    spans.forEach((s, i) => {
+      const sg = sp.signs[i]; if (sg._img == null) return;
+      // Đặt ảnh chữ ký giữa khối ký: tính bằng điểm ảnh rồi đổi sang EMU (ExcelJS không tự quy đổi độ lệch theo độ rộng cột)
+      const sz = sg._size && sg._size.w && sg._size.h ? sg._size : { w: 3, h: 1 };
+      const IMG_H = Math.min(56, 160 * sz.h / sz.w), IMG_W = Math.round(IMG_H * sz.w / sz.h);
+      const px = w => Math.round(w * 7 + 5), EMU = 9525;
+      let tot = 0; for (let c = s[0]; c <= s[1]; c++) tot += px(wOf(c));
+      let target = Math.max(0, tot / 2 - IMG_W / 2), nc = s[0] - 1, off = 0, acc2 = 0;
+      for (let c = s[0]; c <= s[1]; c++) { const cw = px(wOf(c)); if (acc2 + cw > target) { nc = c - 1; off = target - acc2; break; } acc2 += cw; }
+      ws.addImage(sg._img, { tl: { nativeCol: nc, nativeColOff: Math.round(off * EMU), nativeRow: r, nativeRowOff: 3 * EMU }, ext: { width: IMG_W, height: Math.round(IMG_H) }, editAs: 'oneCell' });
+    });
+    r++;
     for (let i = 0; i < 3; i++) { r++; ws.getRow(r).height = 17; }
     r++; spans.forEach((s, i) => band(r, s[0], s[1], sp.signs[i].name || '', { bold: true })); ws.getRow(r).height = 20;
   }
@@ -1474,6 +2067,7 @@ function buildSheet(wb, sp, logoId) {
 
 /* ---------- Bản in HTML ---------- */
 function specToHtml(sp) {
+  if (sp.html) return sp.html;
   const cols = sp.columns, rows = sp.rows || [], skip = {}, span = {};
   (sp.merges || []).forEach(m => { span[m[0] + ':' + m[1]] = m[2] - m[0] + 1; for (let r = m[0] + 1; r <= m[2]; r++) skip[r + ':' + m[1]] = 1; });
   const sty = st => { if (!st) return ''; let s = ''; if (st.color) s += 'color:' + hex(st.color) + ';'; if (st.fill) s += 'background:' + hex(st.fill) + ';'; if (st.bold) s += 'font-weight:bold;'; if (st.italic) s += 'font-style:italic;'; return s; };
@@ -1487,7 +2081,7 @@ function specToHtml(sp) {
     row.forEach((v, ci) => {
       if (skip[ri + ':' + ci]) return;
       const rs = span[ri + ':' + ci];
-      h += '<td' + (rs ? ' rowspan="' + rs + '"' : '') + ' style="text-align:' + (cols[ci].align || 'center') + ';' + sty(sp.style && sp.style(ri, ci, v, row)) + '">' + esc(v == null ? '' : v) + '</td>';
+      h += '<td' + (rs ? ' rowspan="' + rs + '"' : '') + ' style="text-align:' + (cols[ci].align || 'center') + ';' + sty(sp.style && sp.style(ri, ci, v, row)) + '">' + (v && typeof v === 'object' ? esc(v.t).replace(/\n/g, '<br>') + (v.img ? '<img class="cellsig" src="' + v.img + '" alt="">' : '') : esc(v == null ? '' : v)) + '</td>';
     });
     h += '</tr>';
   });
@@ -1495,7 +2089,7 @@ function specToHtml(sp) {
   h += '</tbody></table>';
   if (sp.note) h += '<p class="note">' + esc(sp.note) + '</p>';
   if (sp.signs && sp.signs.length) {
-    h += '<div class="sig"><div class="date">' + esc(dateLine()) + '</div><div class="row">' + sp.signs.map(s => '<div><b>' + esc(s.title) + '</b><i>' + esc(s.note || '(Ký, ghi rõ họ tên)') + '</i><b class="nm">' + esc(s.name || '') + '</b></div>').join('') + '</div></div>';
+    h += '<div class="sig"><div class="date">' + esc(dateLine()) + '</div><div class="row">' + sp.signs.map(s => '<div' + (s.sig ? ' class="has"' : '') + '><b>' + esc(s.title) + '</b><i>' + esc(s.note || '(Ký, ghi rõ họ tên)') + '</i>' + (s.sig ? '<img class="sg" src="' + s.sig + '" alt="">' : '') + '<b class="nm">' + esc(s.name || '') + '</b></div>').join('') + '</div></div>';
   }
   return '<section class="pg">' + h + '</section>';
 }
@@ -1513,13 +2107,19 @@ function printDoc(title, specs, landscape) {
     'table{border-collapse:collapse;width:100%;margin:6px 0 10px}th{background:#1d3557;color:#fff;border:1px solid #26507d;border-bottom:2px solid #e3a72f;padding:6px 5px;font-size:12.5px}' +
     'td{border:1px solid #b9c3d3;padding:4px 6px;vertical-align:middle}tr.z td{background:#f4f7fb}tr.t td{background:#fbf3df;font-weight:bold;color:#1d3557;border-top:2px solid #e3a72f}' +
     '.note{font-style:italic;color:#5b6880;font-size:12px}.sig{margin-top:14px;page-break-inside:avoid}.sig .date{text-align:right;font-style:italic;padding-right:40px;margin-bottom:4px}' +
-    '.sig .row{display:flex;justify-content:space-around;text-align:center}.sig .row div{min-width:220px}.sig i{display:block;color:#5b6880;margin-bottom:64px}.sig b{display:block}' +
+    '.sig .row{display:flex;justify-content:space-around;text-align:center}.sig .row div{min-width:220px}.sig i{display:block;color:#5b6880;margin-bottom:64px}.sig .has i{margin-bottom:4px}.sig img.sg{display:block;height:56px;max-width:190px;object-fit:contain;margin:0 auto 4px}.sig b{display:block}' +
+    'img.cellsig{display:block;height:26px;max-width:110px;object-fit:contain;margin-top:2px}' +
+    '.notice{font-size:14px;line-height:1.55}.notice p{margin:6px 0}.notice .lines{border-bottom:1px dotted #555;height:22px}.notice .kpi{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.notice .kpi span{border:1px solid #b9c3d3;border-radius:4px;padding:3px 8px;background:#f4f7fb}' +
     '.pg{page-break-after:always}.pg:last-child{page-break-after:auto}.tip{background:#fff7e0;border:1px solid #e3a72f;padding:8px 12px;margin-bottom:14px;font-family:Arial,sans-serif;border-radius:6px}' +
-    '@media print{.tip{display:none}body{margin:0}th,tr.z td,tr.t td,.info{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
+    '@media screen{.pg{padding-bottom:30px;margin-bottom:30px;border-bottom:2px dashed #b9c3d3}.pg:last-child{border-bottom:0}}@media print{.tip{display:none}body{margin:0}th,tr.z td,tr.t td,.info{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
   return '<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>' + esc(title) + '</title><style>' + css + '</style></head><body>' +
     '<div class="tip">Bấm <b>Ctrl + P</b> để in hoặc lưu PDF (chọn khổ A4' + (landscape ? ', hướng ngang' : '') + ', bật "Đồ hoạ nền").</div>' + specs.map(specToHtml).join('') + '</body></html>';
 }
 async function outReport(mode, fileBase, title, xlsSpecs, htmlSpecs, landscape) {
+  const all = xlsSpecs.concat(htmlSpecs || []), ids = [];
+  all.forEach(sp => (sp.signs || []).forEach(sg => { if (sg.sid) ids.push(sg.sid); }));
+  await ensureSigs(ids);
+  all.forEach(sp => (sp.signs || []).forEach(sg => { if (sg.sid) sg.sig = sigOf(sg.sid); }));
   if (mode === 'xls') await xlsxReport(fileBase + '.xlsx', xlsSpecs);
   else saveFile(fileBase + '_BanIn.html', printDoc(title, htmlSpecs || xlsSpecs, landscape));
 }
@@ -1537,7 +2137,7 @@ function lopPicker(id, lops) {
   return '<select class="in" id="' + id + '">' + (lops.length > 1 ? '<option value="*">Tất cả (' + lops.length + ' lớp)</option>' : '') + lops.map(l => '<option>' + esc(l) + '</option>').join('') + '</select>';
 }
 function pickLops(id, lops) { const v = $(id).value; return v === '*' ? lops : [v]; }
-function preparer(lops) { const gv = lops.length === 1 ? gvcnOf(lops[0]) : ''; return gv ? { title: 'GIÁO VIÊN CHỦ NHIỆM', note: '(Người lập bảng)', name: gv } : { title: 'NGƯỜI LẬP BẢNG', note: '(Ký, ghi rõ họ tên)', name: S.me.admin ? '' : S.me.name }; }
+function preparer(lops) { const gv = lops.length === 1 ? gvcnOf(lops[0]) : ''; return gv ? { title: 'GIÁO VIÊN CHỦ NHIỆM', note: '(Người lập bảng)', name: gv, sid: gvcnIdOf(lops[0]) } : { title: 'NGƯỜI LẬP BẢNG', note: '(Ký, ghi rõ họ tên)', name: S.me.admin ? '' : S.me.name, sid: S.me.admin ? '' : S.me.id }; }
 function principal() { return { title: 'HIỆU TRƯỞNG', note: '(Ký tên, đóng dấu)', name: S.cfg.school.hieuTruong }; }
 function renderBc() {
   if (!coreCanExport(S.me)) { $('vBc').innerHTML = '<div class="card"><div class="empty">Chỉ GVCN, Đoàn trường, Ban giám hiệu hoặc người được quản trị cấp quyền mới xuất báo cáo.</div></div>'; return; }
@@ -1552,11 +2152,15 @@ function renderBc() {
     '<div class="grid g3"><label class="f">Từ ngày<input class="in" type="date" id="rVpF" value="' + mb.from + '"></label><label class="f">Đến ngày<input class="in" type="date" id="rVpT" value="' + mb.to + '"></label><label class="f">Lớp' + lopPicker('rVpL', vp) + '</label></div>');
   if (td.length) h += card('rTd', 'Thi đua tuần các lớp', 'Điểm chuẩn ' + S.cfg.points.lopBase + ', cộng/trừ theo xếp loại tiết, vi phạm của học sinh và nề nếp Đoàn trường.',
     '<div class="grid g2"><label class="f">Từ tuần<input class="in" type="number" id="rTdA" min="1" max="' + totalWeeks() + '" value="' + cw + '"></label><label class="f">Đến tuần<input class="in" type="number" id="rTdB" min="1" max="' + totalWeeks() + '" value="' + cw + '"></label></div>');
+  if (vp.length) h += card('rPh', 'Thông báo phụ huynh', 'GVCN chọn khoảng thời gian để lập <b>phiếu báo phụ huynh</b> (mỗi học sinh một trang, có chữ ký GVCN và chỗ phụ huynh ký), danh sách Excel kèm <b>tin nhắn soạn sẵn</b> để gửi Zalo/SMS.',
+    '<div class="grid g3"><label class="f">Từ ngày<input class="in" type="date" id="rPhF" value="' + mb.from + '"></label><label class="f">Đến ngày<input class="in" type="date" id="rPhT" value="' + (todayISO() < mb.to ? todayISO() : mb.to) + '"></label><label class="f">Lớp' + lopPicker('rPhL', vp.length > 1 ? vp : vp) + '</label></div>' +
+    '<div class="grid g2"><label class="f">Học sinh<select class="in" id="rPhS"></select></label><label class="row" style="gap:8px;align-self:end;font-weight:600"><input type="checkbox" id="rPhK" checked> Kèm khen thưởng và điểm danh</label></div>');
   if (sb.length) h += card('rSb', 'Sổ đầu bài tổng kết', 'Toàn bộ tiết đã ghi, xếp loại, vi phạm; tiết đã sửa được tô đỏ.',
     '<div class="grid g3"><label class="f">Từ tuần<input class="in" type="number" id="rSbA" min="1" max="' + totalWeeks() + '" value="1"></label><label class="f">Đến tuần<input class="in" type="number" id="rSbB" min="1" max="' + totalWeeks() + '" value="' + cw + '"></label><label class="f">Lớp' + lopPicker('rSbL', sb) + '</label></div>');
   $('vBc').innerHTML = h + '</div>';
   const bind = (id, fn, scope) => { if (!$(id + 'View')) return; ['view', 'xls', 'html'].forEach((m, i) => $(id + ['View', 'Xls', 'Html'][i]).onclick = async () => { try { await fn(m, scope); } catch (e) { toast(e.message); } }); };
-  bind('rHk', repHk, hk); bind('rVp', repVp, vp); bind('rTd', repTd, td); bind('rSb', repSb, sb);
+  bind('rHk', repHk, hk); bind('rVp', repVp, vp); bind('rTd', repTd, td); bind('rSb', repSb, sb); bind('rPh', repPh, vp);
+  if ($('rPhL')) { const opt = $('rPhL').querySelector('option[value="*"]'); if (opt) opt.remove(); const fill = () => { const l = $('rPhL').value; $('rPhS').innerHTML = '<option value="@vp">Học sinh có vi phạm hoặc vắng</option><option value="@all">Tất cả học sinh</option>' + roster(l).map(n => '<option>' + esc(n) + '</option>').join(''); }; $('rPhL').onchange = fill; fill(); }
 }
 function busy(id) { $(id + 'Out').innerHTML = '<div class="empty">Đang tổng hợp…</div>'; }
 
@@ -1696,45 +2300,86 @@ async function repSb(mode, scope) {
   const data = await api('getRange', { lops: lops, w1: a, w2: b });
   const rows = [];
   data.weeks.slice().sort((x, y) => natSort(x.lop, y.lop) || x.week - y.week).forEach(doc => {
-    for (let d = 0; d < 6; d++) ['S', 'C'].forEach(bb => { for (let t = 1; t <= 5; t++) { const e = doc.slots[d + bb + t]; if (e) rows.push({ lop: doc.lop, week: doc.week, d: d, b: bb, t: t, iso: dateOf(doc.week, d), e: e }); } });
+    for (let d = 0; d < 6; d++) ['S', 'C'].forEach(bb => { for (let t = 1; t <= 5; t++) { const e = doc.slots[d + bb + t]; if (e && !e.deleted) rows.push({ lop: doc.lop, week: doc.week, d: d, b: bb, t: t, iso: dateOf(doc.week, d), e: e }); } });
   });
   const per = lops.map(l => { const rs = rows.filter(r => r.lop === l), s = weekStats(Object.fromEntries(rs.map((r, i) => [i, r.e]))); return Object.assign({ lop: l }, s); });
-  $('rSbOut').innerHTML = '<div class="tblwrap"><table class="lst"><thead><tr><th>Lớp</th><th class="n">Tiết đã ghi</th><th class="n">Tốt</th><th class="n">Khá</th><th class="n">TB</th><th class="n">Yếu</th><th class="n">Lượt VP</th><th class="n">Tiết sửa</th></tr></thead><tbody>' +
-    per.map(p => '<tr><td><b>' + esc(p.lop) + '</b></td><td class="n">' + p.done + '</td><td class="n">' + p.A + '</td><td class="n">' + p.B + '</td><td class="n">' + p.C + '</td><td class="n">' + p.D + '</td><td class="n">' + p.vp + '</td><td class="n">' + p.ed + '</td></tr>').join('') + '</tbody></table></div>';
+  $('rSbOut').innerHTML = '<div class="tblwrap"><table class="lst"><thead><tr><th>Lớp</th><th class="n">Tiết đã ghi</th><th class="n">Tốt</th><th class="n">Khá</th><th class="n">TB</th><th class="n">Yếu</th><th class="n">Lượt VP</th><th class="n">Sửa quá hạn</th></tr></thead><tbody>' +
+    per.map(p => '<tr><td><b>' + esc(p.lop) + '</b></td><td class="n">' + p.done + '</td><td class="n">' + p.A + '</td><td class="n">' + p.B + '</td><td class="n">' + p.C + '</td><td class="n">' + p.D + '</td><td class="n">' + p.vp + '</td><td class="n' + (p.late ? ' late-t' : '') + '">' + p.late + '</td></tr>').join('') + '</tbody></table></div>';
   if (mode === 'view') return;
   if (!rows.length) { toast('Chưa có tiết nào trong khoảng đã chọn.'); return; }
   const vpTxt = e => (e.vp || []).map(x => x.hs + ': ' + x.ten + ' (−' + x.diemHS + ')').join('; ');
   const ktTxt = e => (e.cong || []).map(x => x.hs + ': ' + x.ten).join('; ');
   const cols = [{ h: 'Thứ', w: 9 }, { h: 'Ngày', w: 11 }, { h: 'Buổi', w: 7 }, { h: 'Tiết', w: 5 }, { h: 'Môn', w: 14, align: 'left' }, { h: 'PPCT', w: 6 }, { h: 'Tên bài', w: 30, align: 'left' }, { h: 'Vắng', w: 14, align: 'left' },
     { h: 'Học sinh vi phạm', w: 32, align: 'left' }, { h: 'Điểm hồng / Tuyên dương', w: 26, align: 'left' }, { h: 'Nhận xét', w: 24, align: 'left' }, { h: 'Xếp loại', w: 8 }, { h: 'GV ký', w: 24, align: 'left' }];
-  const rowOf = r => { const e = r.e, last = e.edits && e.edits.length ? e.edits[e.edits.length - 1] : null;
-    return [CORE_DAYS[r.d], vn(r.iso), r.b === 'S' ? 'Sáng' : 'Chiều', r.t, e.mon, e.tietPPCT, e.tenBai, e.vang, vpTxt(e), ktTxt(e), e.nhanXet, e.xepLoai, e.gvName + ' – ' + fdt(e.signedAt) + (last ? '\nĐã sửa: ' + last.by + ' – ' + fdt(last.at) : '')]; };
-  const st = list => (ri, ci, v) => { const e = list[ri].e; if (e.edits && e.edits.length) return { color: XC.red, fill: XC.redBg }; if (ci === 8 && v) return { color: XC.red }; if (ci === 9 && v) return { color: XC.green }; if (ci === 11) return { bold: true }; return null; };
+  await ensureSigs(rows.map(r => r.e.gvId));
+  const rowOf = (r, img) => { const e = r.e, last = coreLastEdit(e);
+    const sign = e.gvName + ' – ' + fdt(e.signedAt) + (last ? '\n' + (CORE_EDIT_TYPES[last.type] || 'Sửa') + (isLate(e) ? ' (quá hạn)' : '') + ': ' + last.by + ' – ' + fdt(last.at) : '');
+    return [CORE_DAYS[r.d], vn(r.iso), r.b === 'S' ? 'Sáng' : 'Chiều', r.t, monText(e), e.tietPPCT, e.tenBai, e.vang, vpTxt(e), ktTxt(e), e.nhanXet, e.xepLoai, img ? { t: sign, img: sigOf(e.gvId) } : sign]; };
+  const st = list => (ri, ci, v) => { const e = list[ri].e; if (isLate(e)) return { color: XC.late, fill: XC.lateBg, bold: true }; if (ci === 8 && v) return { color: XC.red }; if (ci === 9 && v) return { color: XC.green }; if (ci === 11) return { bold: true }; return null; };
   const groups = {}; rows.forEach(r => (groups[r.lop + '|' + r.week] = groups[r.lop + '|' + r.week] || []).push(r));
   const keys = Object.keys(groups).sort((x, y) => { const p = x.split('|'), q = y.split('|'); return natSort(p[0], q[0]) || p[1] - q[1]; });
   const weekSpecs = keys.map(k => { const list = groups[k], l = list[0].lop, w = list[0].week, s = weekStats(Object.fromEntries(list.map((r, i) => [i, r.e])));
     return { name: l + ' T' + w, title: 'SỔ ĐẦU BÀI – LỚP ' + l + ' – TUẦN ' + w, subtitle: weekLabel(w) + ' – GVCN: ' + (gvcnOf(l) || '…') + ' – Năm học ' + S.cfg.school.namHoc,
-      info: s.done + ' tiết   •   Tốt ' + s.A + '   •   Khá ' + s.B + '   •   TB ' + s.C + '   •   Yếu ' + s.D + '   •   Vi phạm ' + s.vp + ' lượt' + (s.ed ? '   •   ' + s.ed + ' tiết đã sửa (tô đỏ)' : ''),
-      columns: cols, rows: list.map(rowOf), style: st(list), signs: [principal(), { title: 'GIÁO VIÊN CHỦ NHIỆM', note: '(Ký, ghi rõ họ tên)', name: gvcnOf(l) }] }; });
+      info: s.done + ' tiết   •   Tốt ' + s.A + '   •   Khá ' + s.B + '   •   TB ' + s.C + '   •   Yếu ' + s.D + '   •   Vi phạm ' + s.vp + ' lượt' + (s.late ? '   •   ' + s.late + ' tiết sửa quá hạn (đỏ đậm)' : ''),
+      columns: cols, rows: list.map(r => rowOf(r, true)), style: st(list), signs: [principal(), { title: 'GIÁO VIÊN CHỦ NHIỆM', note: '(Ký, ghi rõ họ tên)', name: gvcnOf(l), sid: gvcnIdOf(l) }] }; });
   const summary = { name: 'Tổng hợp', tab: XC.gold, title: 'SỔ ĐẦU BÀI TỔNG KẾT TỪ TUẦN ' + a + ' ĐẾN TUẦN ' + b, subtitle: 'Năm học ' + S.cfg.school.namHoc, portrait: true,
-    columns: [{ h: 'Lớp', w: 9 }, { h: 'GVCN', w: 24, align: 'left' }, { h: 'Tiết đã ghi', w: 10 }, { h: 'Tốt', w: 7 }, { h: 'Khá', w: 7 }, { h: 'TB', w: 7 }, { h: 'Yếu', w: 7 }, { h: 'Lượt VP', w: 9 }, { h: 'Tiết đã sửa', w: 10 }],
-    rows: per.map(p => [p.lop, gvcnOf(p.lop), p.done, p.A, p.B, p.C, p.D, p.vp, p.ed]), style: (ri, ci, v) => ci === 8 && v ? { color: XC.red, bold: true } : null, signs: [principal(), preparer(lops)] };
+    columns: [{ h: 'Lớp', w: 9 }, { h: 'GVCN', w: 24, align: 'left' }, { h: 'Tiết đã ghi', w: 10 }, { h: 'Tốt', w: 7 }, { h: 'Khá', w: 7 }, { h: 'TB', w: 7 }, { h: 'Yếu', w: 7 }, { h: 'Lượt VP', w: 9 }, { h: 'Sửa quá hạn', w: 10 }],
+    rows: per.map(p => [p.lop, gvcnOf(p.lop), p.done, p.A, p.B, p.C, p.D, p.vp, p.late]), style: (ri, ci, v) => ci === 8 && v ? { color: XC.red, bold: true } : null, signs: [principal(), preparer(lops)] };
   const detail = { name: 'Chi tiết sổ', tab: XC.navy, title: 'SỔ ĐẦU BÀI CHI TIẾT TỪ TUẦN ' + a + ' ĐẾN TUẦN ' + b, subtitle: (lops.length > 1 ? 'Toàn trường' : 'Lớp ' + lops[0]) + ' – Năm học ' + S.cfg.school.namHoc,
-    columns: [{ h: 'Lớp', w: 7 }, { h: 'Tuần', w: 6 }].concat(cols), rows: rows.map(r => [r.lop, r.week].concat(rowOf(r))), style: (ri, ci, v) => st(rows)(ri, ci - 2, v) };
+    columns: [{ h: 'Lớp', w: 7 }, { h: 'Tuần', w: 6 }].concat(cols), rows: rows.map(r => [r.lop, r.week].concat(rowOf(r, false))), style: (ri, ci, v) => st(rows)(ri, ci - 2, v) };
   const tag = 'T' + a + (b > a ? '-' + b : '') + (lops.length === 1 ? '_' + lops[0] : '');
   await outReport(mode, 'SoDauBai_' + tag, 'Sổ đầu bài', [summary, detail], weekSpecs, true);
+}
+
+/* --- Thông báo phụ huynh theo khoảng thời gian --- */
+async function repPh(mode) {
+  const from = $('rPhF').value, to = $('rPhT').value, lop = $('rPhL').value, pick = $('rPhS').value, withK = $('rPhK').checked;
+  if (!from || !to || from > to) { toast('Chọn khoảng ngày hợp lệ.'); return; }
+  busy('rPh');
+  const r = await loadEvents([lop], from, to), abs = absencesOf(r.data).filter(a => a.ngay >= from && a.ngay <= to);
+  let list = studentScores(lop, r.ev).map(x => Object.assign(x, { abs: abs.filter(a => a.hs === x.ten), inf: info(lop, x.ten) }));
+  list.forEach(x => { x.vp = x.ev.filter(e => e.loai === 'tru'); x.kt = x.ev.filter(e => e.loai === 'cong'); x.p = x.abs.filter(a => a.loai === 'P').length; x.kp = x.abs.filter(a => a.loai === 'KP').length;
+    x.msg = parentMessage(lop, x.ten, from, to, withK ? x.ev : x.vp, withK ? x.abs : []); });
+  if (pick === '@vp') list = list.filter(x => x.vp.length || x.kp || x.p);
+  else if (pick !== '@all') list = list.filter(x => x.ten === pick);
+  $('rPhOut').innerHTML = !list.length ? '<div class="empty">Không có học sinh nào vi phạm hoặc vắng trong khoảng thời gian này.</div>' :
+    '<div class="tblwrap"><table class="lst"><thead><tr><th>Học sinh</th><th>Phụ huynh · SĐT</th><th class="n">VP</th><th class="n">Vắng P/KP</th><th>Tin nhắn</th><th></th></tr></thead><tbody>' +
+    list.map((x, i) => '<tr><td><b>' + esc(x.ten) + '</b></td><td>' + esc(x.inf.ph || '—') + '<br><span class="muted">' + esc(x.inf.sdt || '') + '</span></td><td class="n' + (x.vp.length ? ' neg' : '') + '">' + x.vp.length + '</td><td class="n">' + x.p + '/' + x.kp + '</td><td style="min-width:280px;font-size:12.5px">' + esc(x.msg) + '</td><td><button class="btn sm" type="button" data-cp="' + i + '">Sao chép</button></td></tr>').join('') + '</tbody></table></div>';
+  $('rPhOut').querySelectorAll('[data-cp]').forEach(b => b.onclick = () => copyText(list[+b.dataset.cp].msg));
+  if (mode === 'view' || !list.length) { if (!list.length && mode !== 'view') toast('Không có học sinh để lập phiếu.'); return; }
+  const gv = gvcnOf(lop), gvSid = gvcnIdOf(lop);
+  const sub = 'Lớp ' + lop + (gv ? ' – GVCN: ' + gv : '') + ' – Từ ' + vn(from) + ' đến ' + vn(to);
+  const xls = { name: 'Thông báo phụ huynh', tab: XC.amber, title: 'DANH SÁCH THÔNG BÁO PHỤ HUYNH', subtitle: sub,
+    info: list.length + ' học sinh   •   ' + list.reduce((s, x) => s + x.vp.length, 0) + ' lượt vi phạm   •   vắng ' + list.reduce((s, x) => s + x.p, 0) + ' tiết có phép, ' + list.reduce((s, x) => s + x.kp, 0) + ' tiết không phép',
+    columns: [{ h: 'STT', w: 6 }, { h: 'Họ và tên', w: 24, align: 'left' }, { h: 'Phụ huynh', w: 22, align: 'left' }, { h: 'SĐT', w: 13 }, { h: 'Số lần VP', w: 9 }, { h: 'Điểm trừ', w: 9 }, { h: 'Vắng P', w: 8 }, { h: 'Vắng KP', w: 8 }, { h: 'Nội dung vi phạm', w: 40, align: 'left' }, { h: 'Tin nhắn gửi phụ huynh', w: 70, align: 'left' }],
+    rows: list.map((x, i) => [i + 1, x.ten, x.inf.ph || '', x.inf.sdt || '', x.vp.length, x.tru, x.p, x.kp, x.vp.map(e => vnShort(e.ngay) + ': ' + e.ten).join('; '), x.msg]),
+    style: (ri, ci, v) => (ci === 4 || ci === 5 || ci === 7) && v > 0 ? { color: XC.red, bold: true } : ci === 1 ? { bold: true } : null,
+    signs: [principal(), { title: 'GIÁO VIÊN CHỦ NHIỆM', note: '(Người lập bảng)', name: gv, sid: gvSid }] };
+  await ensureSigs([gvSid]);
+  const gsig = sigOf(gvSid);
+  const pages = list.map(x => ({ html: '<section class="pg notice">' + docHead() + '<h1>PHIẾU THÔNG BÁO TÌNH HÌNH RÈN LUYỆN CỦA HỌC SINH</h1><h2>Từ ngày ' + vn(from) + ' đến ngày ' + vn(to) + '</h2>' +
+    '<p>Kính gửi: <b>' + (x.inf.ph ? 'Ông/Bà ' + esc(x.inf.ph) : 'Quý phụ huynh') + '</b>' + (x.inf.sdt ? ' (ĐT: ' + esc(x.inf.sdt) + ')' : '') + ', phụ huynh của em <b>' + esc(x.ten) + '</b>' + (x.inf.ns ? ', sinh ngày ' + esc(x.inf.ns) : '') + ', lớp <b>' + esc(lop) + '</b>.</p>' +
+    '<p>Giáo viên chủ nhiệm lớp ' + esc(lop) + ' trân trọng thông báo tình hình rèn luyện của em trong thời gian trên như sau:</p>' +
+    '<div class="kpi"><span>Số lần vi phạm: <b>' + x.vp.length + '</b></span><span>Điểm bị trừ: <b>' + x.tru + '</b></span>' + (withK ? '<span>Vắng có phép: <b>' + x.p + '</b> tiết</span><span>Vắng không phép: <b>' + x.kp + '</b> tiết</span><span>Khen thưởng: <b>' + x.kt.length + '</b></span>' : '') + '</div>' +
+    (x.vp.length ? '<table><thead><tr><th style="width:6%">STT</th><th style="width:14%">Ngày</th><th>Nội dung vi phạm</th><th style="width:10%">Điểm trừ</th><th style="width:28%">Ghi nhận</th></tr></thead><tbody>' + x.vp.map((e, i) => '<tr><td style="text-align:center">' + (i + 1) + '</td><td style="text-align:center">' + vn(e.ngay) + '</td><td>' + esc(e.ten) + (e.ghiChu ? ' (' + esc(e.ghiChu) + ')' : '') + '</td><td style="text-align:center;color:#c42b2b;font-weight:bold">' + e.diemHS + '</td><td>' + esc(e.src) + ' – ' + esc(e.by) + '</td></tr>').join('') + '</tbody></table>' : '<p><i>Trong thời gian trên, em không vi phạm nội quy.</i></p>') +
+    (withK && x.abs.length ? '<p><b>Vắng học:</b> ' + x.abs.map(a => vnShort(a.ngay) + ' tiết ' + a.tiet + ' ' + (a.buoi === 'S' ? 'sáng' : 'chiều') + ' – ' + esc(a.mon) + ' (' + (a.loai === 'KP' ? 'không phép' : 'có phép') + ')').join('; ') + '.</p>' : '') +
+    (withK && x.kt.length ? '<p><b>Khen thưởng:</b> ' + x.kt.map(e => vnShort(e.ngay) + ' ' + esc(e.ten)).join('; ') + '.</p>' : '') +
+    '<p>' + (x.vp.length || x.kp ? 'Kính đề nghị gia đình quan tâm, phối hợp với nhà trường nhắc nhở, giáo dục em thực hiện tốt nội quy.' : 'Kính mong gia đình tiếp tục động viên em phát huy.') + '</p>' +
+    '<p><b>Ý kiến của phụ huynh:</b></p><div class="lines"></div><div class="lines"></div>' +
+    '<div class="sig"><div class="date">' + esc(dateLine()) + '</div><div class="row"><div><b>PHỤ HUYNH HỌC SINH</b><i>(Ký, ghi rõ họ tên)</i><b class="nm"></b></div><div' + (gsig ? ' class="has"' : '') + '><b>GIÁO VIÊN CHỦ NHIỆM</b><i>(Ký, ghi rõ họ tên)</i>' + (gsig ? '<img class="sg" src="' + gsig + '" alt="">' : '') + '<b class="nm">' + esc(gv) + '</b></div></div></div></section>' }));
+  await outReport(mode, 'ThongBaoPhuHuynh_' + lop + '_' + from + '_' + to, 'Thông báo phụ huynh ' + lop, [xls], pages, false);
 }
 
 
 /* ===================================================================
  * CẤU HÌNH (QUẢN TRỊ)
  * =================================================================== */
-const CH_TABS = [['truong', 'Trường & năm học'], ['diem', 'Điểm & xếp loại'], ['dm', 'Danh mục vi phạm, khen thưởng'], ['tk', 'Tài khoản & phân công'], ['lop', 'Lớp'], ['dl', 'Dữ liệu']];
+const CH_TABS = [['truong', 'Trường & năm học'], ['diem', 'Điểm & xếp loại'], ['quytac', 'Quy tắc sổ & cảnh báo'], ['dm', 'Danh mục vi phạm, khen thưởng'], ['tk', 'Tài khoản & phân công'], ['tkb', 'Thời khoá biểu'], ['lop', 'Lớp & học sinh'], ['dl', 'Sao lưu & dữ liệu']];
 function renderCh() {
   if (!S.ch.draft) S.ch.draft = clone(S.cfg);
   $('vCh').innerHTML = '<div class="card"><div class="card-b"><div class="subtabs">' + CH_TABS.map(t => '<button type="button" data-t="' + t[0] + '" class="' + (S.ch.tab === t[0] ? 'on' : '') + '">' + t[1] + '</button>').join('') + '</div></div></div><div id="chBody"></div>';
   $('vCh').querySelectorAll('.subtabs button').forEach(b => b.onclick = () => { S.ch.tab = b.dataset.t; renderCh(); });
-  ({ truong: chTruong, diem: chDiem, dm: chDm, tk: chTk, lop: chLop, dl: chDl })[S.ch.tab]();
+  ({ truong: chTruong, diem: chDiem, quytac: chQuyTac, dm: chDm, tk: chTk, tkb: chTkb, lop: chLop, dl: chDl })[S.ch.tab]();
 }
 async function commit(msg) {
   try {
@@ -1859,21 +2504,123 @@ function chDm() {
     S.ch.draft.catalog = list; chDm(); toast('Đã đọc ' + list.length + ' nội dung. Bấm "Lưu danh mục" để áp dụng.');
   }); };
 }
+/* ===================================================================
+ * CẤU HÌNH: QUY TẮC SỔ, CẢNH BÁO, THỜI KHOÁ BIỂU, PHÂN CÔNG, HỌC SINH, SAO LƯU
+ * =================================================================== */
+function chQuyTac() {
+  const R = S.ch.draft.rules, W = R.watch;
+  $('chBody').innerHTML = chCard('Sửa và xoá tiết đã ký',
+    '<div class="grid g3"><label class="f">Thời gian được sửa mà vẫn hiện chữ đen (giờ)<input class="in num" type="number" min="0" max="720" id="qGrace" value="' + R.graceHours + '"></label>' +
+    '<label class="row" style="gap:8px;align-self:end;font-weight:600"><input type="checkbox" id="qDel"' + (R.teacherDelete ? ' checked' : '') + '> Cho giáo viên xoá tiết mình đã ký để ký lại</label></div>' +
+    '<div class="demo-rows"><div class="demo"><span class="dot"></span><div><b>Ghi bình thường</b> hoặc sửa trong ' + R.graceHours + ' giờ đầu → <b>chữ đen</b></div></div>' +
+    '<div class="demo late"><span class="dot"></span><div><b>Sửa, xoá rồi ký lại sau ' + R.graceHours + ' giờ</b> → <b>chữ đỏ đậm</b>, ghi tên + ngày giờ, báo về chuông cảnh báo của Ban giám hiệu và GVCN</div></div></div>' +
+    '<div class="muted" style="font-size:12.5px">Đặt 0 giờ nếu muốn mọi lần sửa đều hiện đỏ đậm. Mốc thời gian tính từ lần ký đầu tiên của tiết.</div>') +
+    chCard('Môn có phân môn',
+    '<div class="muted" style="font-size:13px">Khi ký sổ các môn dưới đây, ô <b>Phân môn</b> sẽ hiện ra (ví dụ Công nghệ → Công nghệ trồng trọt). Giáo viên <b>bỏ trống nếu không có phân môn</b>. Phân môn cũng có thể khai báo sẵn trong thời khoá biểu. Mỗi dòng một môn.</div>' +
+    '<textarea class="in" id="qPm" rows="6">' + esc((R.phanMon || []).join('\n')) + '</textarea>') +
+    chCard('Cảnh báo học sinh cần quan tâm',
+    '<label class="row" style="gap:8px;font-weight:600"><input type="checkbox" id="wOn"' + (W.on ? ' checked' : '') + '> Bật khung "Học sinh cần quan tâm" (hiện nổi bật trên Sổ đầu bài, Học sinh lớp và toàn trường ở mục Nề nếp)</label>' +
+    '<div class="grid g4"><label class="f">Xét trong (ngày gần nhất)<input class="in num" type="number" min="1" max="60" id="wDays" value="' + W.days + '"></label>' +
+    '<label class="f">Số lần vi phạm từ<input class="in num" type="number" min="0" id="wVp" value="' + W.vpCount + '"></label>' +
+    '<label class="f">Tổng điểm bị trừ từ<input class="in num" type="number" min="0" id="wTru" value="' + W.truMin + '"></label>' +
+    '<label class="f">Số tiết vắng không phép từ<input class="in num" type="number" min="0" id="wKp" value="' + W.kpCount + '"></label>' +
+    '<label class="f">Hoặc điểm tháng dưới<input class="in num" type="number" min="0" id="wSc" value="' + W.scoreBelow + '"></label></div>' +
+    '<div class="muted" style="font-size:12.5px">Học sinh chạm một trong các ngưỡng sẽ hiện trong khung cảnh báo; chạm từ hai ngưỡng trở lên hoặc hạnh kiểm Chưa đạt được tô đậm. Đặt 0 để bỏ một tiêu chí.</div>' +
+    '<div class="row end"><button class="btn primary" type="button" id="qSave">Lưu quy tắc</button></div>');
+  $('qSave').onclick = () => {
+    R.graceHours = Math.max(0, +$('qGrace').value || 0); R.teacherDelete = $('qDel').checked;
+    R.phanMon = $('qPm').value.split(/\n/).map(x => x.trim()).filter(Boolean);
+    R.watch = { on: $('wOn').checked, days: +$('wDays').value || 7, vpCount: +$('wVp').value || 0, truMin: +$('wTru').value || 0, kpCount: +$('wKp').value || 0, scoreBelow: +$('wSc').value || 0 };
+    commit('Đã lưu quy tắc sổ và cảnh báo.');
+  };
+}
+
+/* ----- Thời khoá biểu ----- */
+const TKB_HEAD = ['Lớp', 'Thứ', 'Buổi', 'Tiết', 'Môn', 'Phân môn', 'Giáo viên (tài khoản hoặc họ tên)'];
+function parseThu(v) { const s = String(v).trim().toLowerCase(); const n = s.match(/\d/); if (n) return +n[0] - 2; const m = ['hai', 'ba', 'tư', 'năm', 'sáu', 'bảy'].findIndex(x => s.endsWith(x)); return m; }
+function parseTkbTable(rows) {
+  let hi = 0;
+  for (let i = 0; i < Math.min(rows.length, 8); i++) if (rows[i].some(c => /^l[ớo]p$/i.test(c)) && rows[i].some(c => /^m[ôo]n/i.test(c))) { hi = i + 1; break; }
+  return rows.slice(hi).map(r => ({ lop: coreUp(r[0]), thu: parseThu(r[1]), buoi: /c/i.test(String(r[2]).replace(/s[áa]ng/i, '')) ? 'C' : 'S', tiet: +r[3] || 0, mon: String(r[4] || '').trim(), phanMon: String(r[5] || '').trim(), gv: String(r[6] || '').trim() }))
+    .filter(r => r.lop && r.thu >= 0 && r.thu <= 5 && r.tiet >= 1 && r.tiet <= 5 && r.mon);
+}
+function tkbTemplate() {
+  const rows = [TKB_HEAD], cls = allClasses().slice(0, 2), acc = S.cfg.accounts || [];
+  const mons = ['Chào cờ', 'Toán', 'Toán', 'Ngữ văn', 'Tiếng Anh'];
+  (cls.length ? cls : ['10A1']).forEach(l => {
+    for (let d = 0; d < 6; d++) for (let t = 1; t <= 5; t++) {
+      const mon = d === 0 && t === 1 ? 'Chào cờ' : d === 5 && t === 5 ? 'Sinh hoạt lớp' : d === 2 && t === 4 ? 'Công nghệ' : mons[(d + t) % mons.length] === 'Chào cờ' ? 'Lịch sử' : mons[(d + t) % mons.length];
+      const gv = acc.find(a => a.mon === mon && (a.lop || []).includes(l)) || (mon === 'Chào cờ' || mon === 'Sinh hoạt lớp' ? acc.find(a => a.cn === l) : null);
+      rows.push([l, 'Thứ ' + (d + 2), 'Sáng', t, mon, mon === 'Công nghệ' ? 'Công nghệ trồng trọt' : '', gv ? gv.tk : '']);
+    }
+  });
+  saveXlsx('Mau_ThoiKhoaBieu.xlsx', [{ name: 'TKB', cols: [8, 9, 8, 6, 22, 24, 30], rows: rows }]);
+}
+async function chTkb() {
+  const cw = curWeek();
+  $('chBody').innerHTML = chCard('Nhập thời khoá biểu',
+    '<div class="muted" style="font-size:13px">File Excel/CSV mỗi dòng một tiết: <code class="k">Lớp</code> <code class="k">Thứ</code> (2–7 hoặc "Thứ Hai") <code class="k">Buổi</code> (Sáng/Chiều) <code class="k">Tiết</code> (1–5) <code class="k">Môn</code> <code class="k">Phân môn</code> (bỏ trống nếu không có) <code class="k">Giáo viên</code> (tài khoản hoặc họ tên). TKB thay đổi thì nhập bản mới với tuần áp dụng mới; các tuần trước giữ bản cũ.</div>' +
+    '<div class="grid g3"><label class="f">Áp dụng từ tuần<input class="in num" type="number" min="1" max="' + totalWeeks() + '" id="tkW" value="' + cw + '"></label>' +
+    '<label class="row" style="gap:8px;align-self:end;font-weight:600"><input type="checkbox" id="tkAs" checked> Cập nhật lớp giảng dạy của giáo viên theo TKB</label></div>' +
+    '<div class="row"><label class="btn primary sm" style="cursor:pointer">Chọn file TKB<input type="file" id="tkF" accept=".xlsx,.xls,.csv,.txt" hidden></label><button class="btn sm" type="button" id="tkTplB">Tải file mẫu</button></div><div id="tkRes"></div>') +
+    chCard('Các bản thời khoá biểu', '<div id="tkVers"><div class="empty">Đang tải…</div></div>') +
+    chCard('Xem thời khoá biểu', '<div class="row"><label class="f" style="min-width:140px">Lớp' + classSelect('tkL', allClasses(), S.lop) + '</label><label class="f" style="min-width:120px">Tuần<input class="in num" type="number" id="tkPW" min="1" max="' + totalWeeks() + '" value="' + cw + '"></label></div><div id="tkGrid"></div>');
+  $('tkTplB').onclick = tkbTemplate;
+  if (!srvOk()) { $('tkVers').innerHTML = '<div class="note">Máy chủ chưa cập nhật phiên bản mới nên chưa dùng được thời khoá biểu.</div>'; return; }
+  const loadVers = async () => {
+    try {
+      const v = await api('tkbVersions', {});
+      $('tkVers').innerHTML = !v.length ? '<div class="empty">Chưa có thời khoá biểu.</div>' : '<div class="tblwrap"><table class="lst"><thead><tr><th>Áp dụng từ tuần</th><th>Từ ngày</th><th class="n">Số tiết</th><th>Lớp</th><th></th></tr></thead><tbody>' +
+        v.map(x => '<tr><td><b>Tuần ' + x.from + '</b></td><td>' + vn(dateOf(x.from, 0)) + '</td><td class="n">' + x.n + '</td><td>' + esc(x.lops.join(', ')) + '</td><td><button class="btn sm danger" type="button" data-f="' + x.from + '">Xoá bản này</button></td></tr>').join('') + '</tbody></table></div>';
+      $('tkVers').querySelectorAll('[data-f]').forEach(b => confirmBtn(b, 'Xác nhận xoá', async () => { try { await api('tkbDelete', { fromWeek: +b.dataset.f }); toast('Đã xoá TKB từ tuần ' + b.dataset.f + '.'); loadVers(); showGrid(); } catch (e) { toast(e.message); } }));
+    } catch (e) { $('tkVers').innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; }
+  };
+  const showGrid = async () => {
+    const l = $('tkL').value, w = +$('tkPW').value || cw;
+    if (!l) { $('tkGrid').innerHTML = ''; return; }
+    try {
+      const d = await api('getWeek', { lop: l, week: w }), s = d.tkb.slots;
+      if (!d.tkb.from) { $('tkGrid').innerHTML = '<div class="empty">Lớp ' + esc(l) + ' chưa có TKB ở tuần ' + w + '.</div>'; return; }
+      let h = '<div class="muted" style="font-size:12.5px">Bản áp dụng từ tuần ' + d.tkb.from + '</div><div class="tblwrap"><table class="lst tkbg"><thead><tr><th>Buổi · Tiết</th>' + CORE_DAYS.map(x => '<th>' + x + '</th>').join('') + '</tr></thead><tbody>';
+      ['S', 'C'].forEach(b => { for (let t = 1; t <= 5; t++) { h += '<tr><td><b>' + (b === 'S' ? 'Sáng' : 'Chiều') + ' ' + t + '</b></td>'; for (let dd = 0; dd < 6; dd++) { const x = s[dd + b + t]; h += '<td>' + (x ? '<b>' + esc(x.mon) + '</b>' + (x.phanMon ? '<br><small>' + esc(x.phanMon) + '</small>' : '') + (x.gvName ? '<br><span class="muted">' + esc(x.gvName) + '</span>' : '') : '') + '</td>'; } h += '</tr>'; } });
+      $('tkGrid').innerHTML = h + '</tbody></table></div>';
+    } catch (e) { $('tkGrid').innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; }
+  };
+  $('tkL').onchange = showGrid; $('tkPW').onchange = showGrid;
+  $('tkF').onchange = e => { const f = e.target.files[0]; if (!f) return; readTable(f, async rows => {
+    const list = parseTkbTable(rows);
+    if (!list.length) { $('tkRes').innerHTML = '<div class="err">Không đọc được dòng TKB nào. Kiểm tra các cột theo file mẫu.</div>'; return; }
+    try {
+      const r = await api('tkbImport', { fromWeek: +$('tkW').value || cw, updateAssign: $('tkAs').checked, rows: list });
+      $('tkRes').innerHTML = '<div class="note" style="background:var(--green-bg);border-color:var(--green)">Đã nhập <b>' + r.count + '</b> tiết cho <b>' + r.lops + '</b> lớp, áp dụng từ tuần ' + (+$('tkW').value || cw) + '.' + (r.added ? ' Đã thêm ' + r.added + ' lớp vào phân công giảng dạy.' : '') +
+        (r.unmatched.length ? '<br><b style="color:var(--red)">Chưa khớp tài khoản:</b> ' + esc(r.unmatched.join(', ')) + ' (tiết vẫn hiện tên, nhưng không tự gán lớp).' : '') + '</div>';
+      if (r.added) { const d = await api('getPublic', {}); S.cfg = coreMergeCfg(d.cfg); S.ch.draft = clone(S.cfg); }
+      loadVers(); showGrid();
+    } catch (er) { $('tkRes').innerHTML = '<div class="err">' + esc(er.message) + '</div>'; }
+  }); e.target.value = ''; };
+  loadVers(); showGrid();
+}
+
+/* ----- Tài khoản & phân công ----- */
 function chTk() {
   const A = S.ch.draft.accounts;
   let editing = null;
   $('chBody').innerHTML = chCard('Nhập danh sách tài khoản',
-    '<div class="muted" style="font-size:13px">File Excel/CSV, cột theo thứ tự: <code class="k">Họ và tên</code> <code class="k">Tài khoản</code> <code class="k">Mật khẩu</code> <code class="k">Môn</code> <code class="k">Lớp giảng dạy</code> <code class="k">Lớp chủ nhiệm</code> <code class="k">Vai trò</code> (GV, BGH, DOAN, XUAT). Quyền <b>xuất báo cáo</b>: GVCN (lớp mình), Đoàn trường, BGH, hoặc người được tích "Được xuất báo cáo" (XUAT). Giáo viên chỉ ký sổ những lớp trong cột Lớp giảng dạy; GVCN nhập danh sách học sinh lớp mình.</div>' +
+    '<div class="muted" style="font-size:13px">File Excel/CSV, cột theo thứ tự: <code class="k">Họ và tên</code> <code class="k">Tài khoản</code> <code class="k">Mật khẩu</code> <code class="k">Môn</code> <code class="k">Lớp giảng dạy</code> <code class="k">Lớp chủ nhiệm</code> <code class="k">Vai trò</code> (GV, BGH, DOAN, XUAT). Giáo viên chỉ ký sổ lớp trong cột Lớp giảng dạy; GVCN nhập danh sách học sinh lớp mình; quyền xuất báo cáo: GVCN, Đoàn trường, BGH hoặc XUAT.</div>' +
     '<div class="row"><label class="btn sm" style="cursor:pointer">Nhập từ file<input type="file" id="tkFile" accept=".xlsx,.xls,.csv,.txt" hidden></label><button class="btn sm" type="button" id="tkTpl">Tải file mẫu</button></div>') +
+    chCard('Nhập phân công giảng dạy',
+    '<div class="muted" style="font-size:13px">Dùng khi đầu năm hoặc giữa kỳ thay đổi phân công. File gồm: <code class="k">Tài khoản</code> (hoặc Họ và tên) <code class="k">Môn</code> <code class="k">Lớp giảng dạy</code> <code class="k">Lớp chủ nhiệm</code>. Lớp giảng dạy của giáo viên có trong file được <b>thay bằng</b> phân công mới; giáo viên không có trong file giữ nguyên. Bấm "Tải phân công hiện tại" để có file sửa trực tiếp.</div>' +
+    '<div class="row"><label class="btn primary sm" style="cursor:pointer">Nhập file phân công<input type="file" id="pcFile" accept=".xlsx,.xls,.csv,.txt" hidden></label><button class="btn sm" type="button" id="pcTpl">Tải phân công hiện tại</button></div><div id="pcRes"></div>') +
     chCard('<span id="tkTitle">Thêm tài khoản</span>',
     '<div class="grid g3"><label class="f">Họ và tên<input class="in" id="tName"></label><label class="f">Tài khoản<input class="in" id="tTk" autocomplete="off"></label><label class="f">Mật khẩu<input class="in" id="tMk" value="123456" autocomplete="off"></label>' +
     '<label class="f">Môn<input class="in" id="tMon" list="dlMon2"></label><label class="f">Lớp giảng dạy (cách nhau dấu phẩy)<input class="in" id="tLop" placeholder="10A1, 11A2"></label><label class="f">Lớp chủ nhiệm<input class="in" id="tCn" placeholder="Để trống nếu không"></label></div>' +
     '<div class="roles">' + Object.keys(CORE_ROLES).map(r => '<label><input type="checkbox" data-r="' + r + '"' + (r === 'GV' ? ' checked' : '') + '> ' + CORE_ROLES[r] + '</label>').join('') + '</div>' +
     '<div class="row end"><button class="btn sm" type="button" id="tReset">Làm mới</button><button class="btn primary" type="button" id="tSave">Lưu tài khoản</button></div><datalist id="dlMon2">' + SUBJECTS.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>') +
     chCard('Danh sách tài khoản (' + A.length + ')',
-    '<div class="tblwrap"><table class="lst"><thead><tr><th>#</th><th>Họ và tên</th><th>Tài khoản</th><th>Mật khẩu</th><th>Môn</th><th>Lớp giảng dạy</th><th>CN</th><th>Vai trò</th><th></th></tr></thead><tbody>' +
+    '<div class="tblwrap"><table class="lst"><thead><tr><th>#</th><th>Họ và tên</th><th>Tài khoản</th><th>Mật khẩu</th><th>Môn</th><th>Lớp giảng dạy</th><th>CN</th><th>Vai trò</th><th>Chữ ký</th><th></th></tr></thead><tbody>' +
     (A.length ? A.map((a, i) => '<tr><td>' + (i + 1) + '</td><td><b>' + esc(a.name) + '</b></td><td>' + esc(a.tk) + '</td><td>' + esc(a.mk) + '</td><td>' + esc(a.mon) + '</td><td>' + esc((a.lop || []).join(', ')) + '</td><td>' + esc(a.cn) + '</td><td>' + (a.roles || []).map(r => '<span class="pill B" style="margin-right:3px">' + r + '</span>').join('') + '</td>' +
-      '<td style="white-space:nowrap"><button class="btn sm" type="button" data-ed="' + i + '">Sửa</button> <button class="btn sm danger" type="button" data-del="' + i + '">Xoá</button></td></tr>').join('') : '<tr><td colspan="9" class="empty">Chưa có tài khoản.</td></tr>') + '</tbody></table></div>');
+      '<td class="sigc" data-sid="' + esc(a.id) + '"></td><td style="white-space:nowrap"><button class="btn sm" type="button" data-sg="' + i + '">Chữ ký</button> <button class="btn sm" type="button" data-ed="' + i + '">Sửa</button> <button class="btn sm danger" type="button" data-del="' + i + '">Xoá</button></td></tr>').join('') : '<tr><td colspan="10" class="empty">Chưa có tài khoản.</td></tr>') + '</tbody></table></div>');
+  ensureSigs(A.map(a => a.id)).then(() => document.querySelectorAll('.sigc').forEach(td => { const s = sigOf(td.dataset.sid); td.innerHTML = s ? '<img class="sigimg" src="' + s + '" alt="">' : '<span class="muted">—</span>'; }));
   const reset = () => { editing = null; ['tName', 'tTk', 'tMon', 'tLop', 'tCn'].forEach(i => $(i).value = ''); $('tMk').value = '123456'; $('tkTitle').textContent = 'Thêm tài khoản'; document.querySelectorAll('[data-r]').forEach(c => c.checked = c.dataset.r === 'GV'); };
   $('tReset').onclick = reset;
   $('tSave').onclick = () => {
@@ -1890,9 +2637,33 @@ function chTk() {
     document.querySelectorAll('[data-r]').forEach(c => c.checked = (a.roles || []).includes(c.dataset.r));
     $('tkTitle').textContent = 'Sửa: ' + a.name; $('tName').focus(); $('tName').scrollIntoView({ block: 'center' });
   });
+  $('chBody').querySelectorAll('[data-sg]').forEach(b => b.onclick = () => {
+    const a = A[+b.dataset.sg];
+    if (!srvOk()) { toast('Máy chủ chưa cập nhật phiên bản mới nên chưa lưu được chữ ký.'); return; }
+    openModal('<div class="dlg-h"><h3>Chữ ký: ' + esc(a.name) + '</h3><button class="x" data-close aria-label="Đóng">×</button></div><div class="dlg-b" id="sgHost"></div>');
+    signatureEditor($('sgHost'), sigOf(a.id), async url => { await api('setSig', { id: a.id, sig: url }); S.sigs[a.id] = url; toast('Đã cập nhật chữ ký của ' + a.name + '.'); const td = document.querySelector('.sigc[data-sid="' + a.id + '"]'); if (td) td.innerHTML = url ? '<img class="sigimg" src="' + url + '" alt="">' : '—'; });
+  });
   $('chBody').querySelectorAll('[data-del]').forEach(b => confirmBtn(b, 'Xác nhận', () => { A.splice(+b.dataset.del, 1); commit('Đã xoá tài khoản.'); }));
   $('tkTpl').onclick = () => saveXlsx('Mau_TaiKhoan.xlsx', [{ name: 'TaiKhoan', cols: [26, 12, 10, 14, 22, 12, 14], rows: [['Họ và tên', 'Tài khoản', 'Mật khẩu', 'Môn', 'Lớp giảng dạy', 'Lớp chủ nhiệm', 'Vai trò'],
     ['Lương Khánh Tường', 'tuong', '123456', 'Toán', '10A1, 11A2, 12A1', '12A1', 'GV'], ['Nguyễn Văn Hiệu', 'hieutruong', '123456', '', '', '', 'BGH'], ['Trần Thị Đoàn', 'doan', '123456', 'GD Kinh tế và Pháp luật', '11A2', '', 'GV, DOAN'], ['Phạm Văn Giám Thị', 'giamthi', '123456', '', '', '', 'XUAT']] }]);
+  $('pcTpl').onclick = () => saveXlsx('PhanCong_GiangDay.xlsx', [{ name: 'PhanCong', cols: [14, 26, 18, 30, 14], rows: [['Tài khoản', 'Họ và tên', 'Môn', 'Lớp giảng dạy', 'Lớp chủ nhiệm']].concat(A.map(a => [a.tk, a.name, a.mon || '', (a.lop || []).join(', '), a.cn || ''])) }]);
+  $('pcFile').onchange = e => { const fl = e.target.files[0]; if (!fl) return; readTable(fl, rows => {
+    let hi = 0, c = { tk: 0, name: 1, mon: 2, lop: 3, cn: 4 };
+    for (let i = 0; i < Math.min(rows.length, 6); i++) { const r = rows[i].map(x => x.toLowerCase()); if (r.some(x => /l[ớo]p gi[ảa]ng/.test(x))) { hi = i + 1; c = { tk: r.findIndex(x => /t[àa]i kho[ảa]n/.test(x)), name: r.findIndex(x => /h[ọo].*t[êe]n/.test(x)), mon: r.findIndex(x => /^m[ôo]n/.test(x)), lop: r.findIndex(x => /l[ớo]p gi[ảa]ng/.test(x)), cn: r.findIndex(x => /ch[ủu] nhi[ệe]m/.test(x)) }; break; } }
+    let upd = 0; const miss = [];
+    rows.slice(hi).forEach(r => {
+      const tk = c.tk >= 0 ? String(r[c.tk] || '').trim().toLowerCase() : '', name = c.name >= 0 ? String(r[c.name] || '').trim() : '';
+      if (!tk && !name) return;
+      const a = A.find(x => (tk && x.tk === tk) || (name && x.name.toLowerCase() === name.toLowerCase()));
+      if (!a) { miss.push(tk || name); return; }
+      if (c.mon >= 0 && String(r[c.mon] || '').trim()) a.mon = String(r[c.mon]).trim();
+      if (c.lop >= 0) a.lop = coreList(String(r[c.lop] || '').toUpperCase());
+      if (c.cn >= 0) a.cn = coreUp(r[c.cn]);
+      upd++;
+    });
+    if (!upd) { $('pcRes').innerHTML = '<div class="err">Không khớp được giáo viên nào. Cột Tài khoản hoặc Họ và tên phải trùng với danh sách tài khoản.</div>'; return; }
+    commit('Đã cập nhật phân công cho ' + upd + ' giáo viên.').then(() => { if (miss.length && $('pcRes')) $('pcRes').innerHTML = '<div class="note">Chưa có tài khoản cho: ' + esc(miss.join(', ')) + '. Thêm tài khoản trước rồi nhập lại.</div>'; });
+  }); e.target.value = ''; };
   $('tkFile').onchange = e => { const fl = e.target.files[0]; if (!fl) return; readTable(fl, rows => {
     let add = 0, upd = 0;
     rows.forEach(r => {
@@ -1903,48 +2674,91 @@ function chTk() {
     });
     if (!add && !upd) { toast('Không tìm thấy dòng hợp lệ.'); return; }
     commit('Đã nhập: thêm ' + add + ', cập nhật ' + upd + ' tài khoản.');
-  }); };
+  }); e.target.value = ''; };
 }
+
+/* ----- Lớp & học sinh toàn trường ----- */
 function chLop() {
   const D = S.ch.draft, cls = allClasses();
-  $('chBody').innerHTML = chCard('Danh sách lớp (' + cls.length + ')',
-    '<div class="muted" style="font-size:13px">Lớp được lấy tự động từ phân công giảng dạy và chủ nhiệm. Có thể thêm lớp chưa có phân công.</div>' +
+  $('chBody').innerHTML = chCard('Nhập học sinh toàn trường',
+    '<div class="muted" style="font-size:13px">Một file cho nhiều lớp, các cột: <code class="k">Lớp</code> <code class="k">STT</code> <code class="k">Họ và tên</code> <code class="k">Ngày sinh</code> <code class="k">Họ tên phụ huynh</code> <code class="k">SĐT phụ huynh</code>. Danh sách của các lớp có trong file được thay mới; lớp khác giữ nguyên. GVCN cũng tự nhập được lớp mình ở mục Học sinh lớp.</div>' +
+    '<div class="row"><label class="btn primary sm" style="cursor:pointer">Nhập file học sinh<input type="file" id="hsAll" accept=".xlsx,.xls,.csv,.txt" hidden></label><button class="btn sm" type="button" id="hsAllTpl">Tải file mẫu / danh sách hiện tại</button></div><div id="hsAllRes"></div>') +
+    chCard('Danh sách lớp (' + cls.length + ')',
+    '<div class="muted" style="font-size:13px">Lớp được lấy tự động từ phân công giảng dạy, chủ nhiệm và danh sách học sinh. Có thể thêm lớp chưa có phân công.</div>' +
     '<div class="row"><input class="in" id="lNew" placeholder="VD: 10A3" style="max-width:160px"><button class="btn sm" type="button" id="lAdd">Thêm lớp</button></div>' +
-    '<div class="tblwrap"><table class="lst"><thead><tr><th>Lớp</th><th>GVCN</th><th class="n">Sĩ số</th><th>Giáo viên giảng dạy</th><th></th></tr></thead><tbody>' +
-    cls.map(l => '<tr><td><b>' + esc(l) + '</b></td><td>' + esc(gvcnOf(l) || '—') + '</td><td class="n">' + roster(l).length + '</td><td>' + esc(D.accounts.filter(a => (a.lop || []).includes(l)).map(a => a.name + (a.mon ? ' (' + a.mon + ')' : '')).join(', ')) + '</td>' +
+    '<div class="tblwrap"><table class="lst"><thead><tr><th>Lớp</th><th>GVCN</th><th class="n">Sĩ số</th><th class="n">Có SĐT PH</th><th>Giáo viên giảng dạy</th><th></th></tr></thead><tbody>' +
+    cls.map(l => '<tr><td><b>' + esc(l) + '</b></td><td>' + esc(gvcnOf(l) || '—') + '</td><td class="n">' + roster(l).length + '</td><td class="n">' + Object.values((D.hsInfo || {})[l] || {}).filter(x => x.sdt).length + '</td><td>' + esc(D.accounts.filter(a => (a.lop || []).includes(l)).map(a => a.name + (a.mon ? ' (' + a.mon + ')' : '')).join(', ')) + '</td>' +
       '<td style="white-space:nowrap"><button class="btn sm" type="button" data-hs="' + esc(l) + '">Học sinh</button>' + ((D.classes || []).includes(l) ? ' <button class="btn sm danger" type="button" data-rm="' + esc(l) + '">Bỏ</button>' : '') + '</td></tr>').join('') + '</tbody></table></div>');
+  $('hsAllTpl').onclick = () => studentTemplate(cls);
+  $('hsAll').onchange = e => { const f = e.target.files[0]; if (!f) return; readTable(f, rows => {
+    const list = parseStudentTable(rows).filter(x => x.lop);
+    if (!list.length) { $('hsAllRes').innerHTML = '<div class="err">Không đọc được học sinh nào. File cần có cột Lớp và Họ và tên.</div>'; return; }
+    const by = {}; list.forEach(x => (by[x.lop] = by[x.lop] || []).push(x));
+    D.hsInfo = D.hsInfo || {};
+    Object.keys(by).forEach(l => { D.students[l] = by[l].map(x => x.ten); D.hsInfo[l] = {}; by[l].forEach(x => { if (x.ns || x.ph || x.sdt) D.hsInfo[l][x.ten] = { ns: x.ns, ph: x.ph, sdt: x.sdt }; }); });
+    commit('Đã nhập ' + list.length + ' học sinh cho ' + Object.keys(by).length + ' lớp.');
+  }); e.target.value = ''; };
   $('lAdd').onclick = () => { const l = coreUp($('lNew').value); if (!l) return; D.classes = [...new Set((D.classes || []).concat(l))]; commit('Đã thêm lớp ' + l + '.'); };
   $('chBody').querySelectorAll('[data-rm]').forEach(b => confirmBtn(b, 'Xác nhận', () => { D.classes = D.classes.filter(x => x !== b.dataset.rm); commit('Đã bỏ lớp ' + b.dataset.rm + ' khỏi danh sách thêm riêng.'); }));
   $('chBody').querySelectorAll('[data-hs]').forEach(b => b.onclick = () => { S.hs.lop = b.dataset.hs; showView('hs'); });
 }
+
+/* ----- Dữ liệu: sao lưu tự động + thủ công ----- */
+const BAK_KEY = 'sdb_lastbak';
 function chDl() {
-  $('chBody').innerHTML = chCard('Sao lưu và khôi phục',
-    '<div class="muted" style="font-size:13px">File sao lưu (.json) chứa cấu hình, danh mục, tài khoản, học sinh, toàn bộ sổ đầu bài và sổ nề nếp. Dùng để chuyển giữa máy chủ và bản dùng thử, hoặc lưu trữ cuối năm.</div>' +
-    '<div class="row"><button class="btn primary sm" type="button" id="dBak">Tải file sao lưu</button><label class="btn sm" style="cursor:pointer">Khôi phục từ file<input type="file" id="dRes" accept=".json" hidden></label></div><div class="err" id="dErr"></div>') +
+  const B = S.ch.draft.rules.backup;
+  const periodSel = '<select class="in" id="bkP">' + [['off', 'Tắt'], ['day', 'Hằng ngày'], ['week', 'Hằng tuần'], ['month', 'Hằng tháng']].map(p => '<option value="' + p[0] + '"' + (B.period === p[0] ? ' selected' : '') + '>' + p[1] + '</option>').join('') + '</select>';
+  $('chBody').innerHTML = chCard('Sao lưu tự động định kỳ',
+    (S.mode === 'gas' ? '<div class="muted" style="font-size:13px">Máy chủ tự tạo <b>bản sao Google Sheet</b> vào thư mục "SaoLuu_…" trên Google Drive của trường theo chu kỳ dưới đây, giữ số bản gần nhất và tự xoá bản cũ hơn.</div>' :
+      '<div class="note">Chế độ dùng thử lưu trên trình duyệt nên không tự sao lưu được. Trang sẽ <b>nhắc tải file sao lưu</b> theo chu kỳ dưới đây khi quản trị đăng nhập.</div>') +
+    '<div class="grid g3"><label class="f">Chu kỳ' + periodSel + '</label><label class="f">Giữ số bản gần nhất<input class="in num" type="number" min="1" max="60" id="bkK" value="' + B.keep + '"></label><div class="row" style="align-self:end"><button class="btn primary sm" type="button" id="bkSave">Lưu chu kỳ</button>' + (S.mode === 'gas' ? '<button class="btn sm" type="button" id="bkNow">Sao lưu ngay</button>' : '') + '</div></div>' +
+    '<div id="bkInfo"></div>') +
+    chCard('Tải về / khôi phục',
+    '<div class="muted" style="font-size:13px">File (.json) chứa cấu hình, danh mục, tài khoản, học sinh, thời khoá biểu, toàn bộ sổ đầu bài và sổ nề nếp. Dùng để lưu trữ cuối năm hoặc chuyển giữa máy chủ và bản dùng thử. Chữ ký ảnh không nằm trong file.</div>' +
+    '<div class="row"><button class="btn primary sm" type="button" id="dBak">Tải file sao lưu</button><label class="btn sm" style="cursor:pointer">Khôi phục từ file<input type="file" id="dRes" accept=".json" hidden></label><span class="muted" id="dLast"></span></div><div class="err" id="dErr"></div>') +
     chCard('Dữ liệu mẫu để thử',
     '<div class="muted" style="font-size:13px">Thêm 6 tài khoản mẫu (mật khẩu <code class="k">123456</code>): giáo viên <code class="k">tuong</code> (GVCN 12A1), <code class="k">lan</code>, <code class="k">hung</code> (GVCN 10A1), <code class="k">phuc</code>, Đoàn trường <code class="k">doan</code>, Hiệu trưởng <code class="k">hieutruong</code>, cùng danh sách học sinh mẫu 3 lớp. Xoá trong mục Tài khoản khi dùng thật.</div>' +
     '<div class="row"><button class="btn sm" type="button" id="dSample">Nạp dữ liệu mẫu</button></div>') +
-    chCard('Chế độ lưu', '<div>' + (S.mode === 'gas' ? 'Đang kết nối máy chủ Google Sheets: <code class="k">' + esc(apiUrl().replace(/^(.{48}).+$/, '$1…')) + '</code>' : 'Đang dùng thử: dữ liệu lưu trên trình duyệt máy này.') + '</div>');
+    chCard('Kết nối', '<div>' + (S.mode === 'gas' ? 'Máy chủ Google Sheets: <code class="k">' + esc(apiUrl().replace(/^(.{60}).+$/, '$1…')) + '</code> · phiên bản ' + (S.srvVer || '?') : 'Đang dùng thử: dữ liệu lưu trên trình duyệt máy này.') + '</div>');
+  let last = ''; try { last = localStorage.getItem(BAK_KEY) || ''; } catch (e) { }
+  $('dLast').textContent = last ? 'Lần tải gần nhất: ' + fdt(last) : '';
+  $('bkSave').onclick = () => { S.ch.draft.rules.backup = { period: $('bkP').value, keep: +$('bkK').value || 12 }; commit('Đã lưu chu kỳ sao lưu.'); };
+  const showInfo = async () => {
+    if (S.mode !== 'gas') return;
+    if (!srvOk()) { $('bkInfo').innerHTML = '<div class="note">Máy chủ chưa cập nhật phiên bản mới.</div>'; return; }
+    $('bkInfo').innerHTML = '<div class="muted">Đang kiểm tra…</div>';
+    try {
+      const b = await api('backupInfo', {});
+      $('bkInfo').innerHTML = (b.needAuth || !b.trigger ? '<div class="note late-note"><b>Chưa bật lịch sao lưu tự động.</b> Mở Google Sheet → <b>Tiện ích mở rộng → Apps Script</b> → chọn hàm <code class="k">caiDatSaoLuu</code> → bấm <b>Chạy</b> và cấp quyền Google Drive (làm một lần).</div>' :
+        '<div class="note" style="background:var(--green-bg);border-color:var(--green)"><b style="color:var(--green)">● Đang bật</b> — máy chủ kiểm tra lúc 1 giờ sáng mỗi ngày và sao lưu ' + ({ day: 'hằng ngày', week: 'hằng tuần', month: 'hằng tháng', off: '(đang tắt)' }[b.rules.period]) + '. Lần gần nhất: <b>' + (b.last ? fdt(b.last) : 'chưa có') + '</b>' + (b.folder ? ' · <a href="' + esc(b.folder) + '" target="_blank" rel="noopener">Mở thư mục sao lưu</a>' : '') + '</div>') +
+        (b.files && b.files.length ? '<div class="tblwrap"><table class="lst"><thead><tr><th>Bản sao lưu</th><th>Thời điểm</th><th></th></tr></thead><tbody>' + b.files.slice(0, 12).map(f => '<tr><td>' + esc(f.name) + '</td><td>' + fdt(f.at) + '</td><td><a class="btn sm" href="' + esc(f.url) + '" target="_blank" rel="noopener">Mở</a></td></tr>').join('') + '</tbody></table></div>' : '');
+    } catch (e) { $('bkInfo').innerHTML = '<div class="err">' + esc(e.message) + '</div>'; }
+  };
+  if ($('bkNow')) $('bkNow').onclick = async () => { const b = $('bkNow'); b.disabled = true; b.textContent = 'Đang sao lưu…'; try { const r = await api('backupNow', {}); toast('Đã tạo bản sao: ' + r.name); showInfo(); } catch (e) { toast(e.message); } b.disabled = false; b.textContent = 'Sao lưu ngay'; };
+  showInfo();
   $('dBak').onclick = async () => {
     try {
       const d = await api('getRange', { lops: allClasses(), w1: 1, w2: totalWeeks() + 1 });
+      let tkb = []; if (srvOk()) { try { tkb = await api('tkbExport', {}); } catch (e) { } }
       const cfg = clone(S.cfg); cfg.adminPass = '';
-      saveFile('SaoLuu_SoDauBai_' + todayISO() + '.json', JSON.stringify({ app: 'SoDauBai_BTD', ver: 2, at: new Date().toISOString(), cfg: cfg, weeks: d.weeks, nenep: d.nenep }));
+      saveFile('SaoLuu_SoDauBai_' + todayISO() + '.json', JSON.stringify({ app: 'SoDauBai_BTD', ver: 4, at: new Date().toISOString(), cfg: cfg, weeks: d.weeks, nenep: d.nenep, tkb: tkb }));
+      try { localStorage.setItem(BAK_KEY, new Date().toISOString()); } catch (e) { }
+      $('dLast').textContent = 'Lần tải gần nhất: ' + fdt(new Date().toISOString());
     } catch (e) { $('dErr').textContent = e.message; }
   };
   $('dRes').onchange = e => { const f = e.target.files[0]; if (!f) return; const fr = new FileReader(); fr.onload = async () => {
     try {
       const o = JSON.parse(fr.result);
       if (!o.cfg && !o.config) throw new Error('File không đúng định dạng sao lưu.');
-      const d = await api('restore', { cfg: o.cfg || o.config, weeks: o.weeks || [], nenep: o.nenep || [] });
-      S.cfg = coreMergeCfg(d.cfg); S.ch.draft = clone(S.cfg); renderShell(); renderCh(); toast('Đã khôi phục ' + (o.weeks || []).length + ' tuần sổ, ' + (o.nenep || []).length + ' ghi nhận nề nếp.');
+      const d = await api('restore', { cfg: o.cfg || o.config, weeks: o.weeks || [], nenep: o.nenep || [], tkb: o.tkb });
+      S.cfg = coreMergeCfg(d.cfg); S.ch.draft = clone(S.cfg); renderShell(); renderCh(); toast('Đã khôi phục ' + (o.weeks || []).length + ' tuần sổ, ' + (o.nenep || []).length + ' ghi nhận nề nếp' + (o.tkb ? ', ' + o.tkb.length + ' tiết TKB' : '') + '.');
     } catch (er) { $('dErr').textContent = 'Không khôi phục được: ' + er.message; }
-  }; fr.readAsText(f); };
+  }; fr.readAsText(f); e.target.value = ''; };
   $('dSample').onclick = () => {
     const D = S.ch.draft;
     const add = (name, tk, mon, lop, cn, roles) => { if (!D.accounts.find(a => a.tk === tk)) D.accounts.push({ id: 'tk_' + tk, name: name, tk: tk, mk: '123456', mon: mon, lop: lop, cn: cn, roles: roles }); };
     add('Lương Khánh Tường', 'tuong', 'Toán', ['10A1', '11A2', '12A1'], '12A1', ['GV']);
-    add('Nguyễn Thị Lan', 'lan', 'Ngữ văn', ['10A1', '12A1'], '', ['GV']);
+    add('Nguyễn Thị Lan', 'lan', 'Công nghệ', ['10A1', '12A1'], '', ['GV']);
     add('Trần Văn Hùng', 'hung', 'Tiếng Anh', ['10A1', '11A2', '12A1'], '10A1', ['GV']);
     add('Lê Minh Phúc', 'phuc', 'Vật lí', ['11A2', '12A1'], '11A2', ['GV']);
     add('Võ Thị Thu Đoàn', 'doan', 'GD Kinh tế và Pháp luật', ['10A1'], '', ['GV', 'DOAN']);
@@ -1952,12 +2766,25 @@ function chDl() {
     const ho = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Huỳnh', 'Võ', 'Đặng', 'Bùi', 'Phan', 'Đỗ', 'Ngô', 'Dương'];
     const dem = ['Văn', 'Thị', 'Minh', 'Ngọc', 'Hoàng', 'Thanh', 'Gia', 'Quốc', 'Thảo', 'Bảo'];
     const ten = ['An', 'Bình', 'Châu', 'Duy', 'Hà', 'Khang', 'Linh', 'Phát', 'Vy', 'Tâm', 'Nhi', 'Phúc', 'Quân', 'Trâm', 'Hưng', 'Yến'];
-    ['10A1', '11A2', '12A1'].forEach((l, k) => { if (!(D.students[l] || []).length) D.students[l] = Array.from({ length: 16 }, (_, i) => ho[(i * 5 + k) % ho.length] + ' ' + dem[(i * 3 + k) % dem.length] + ' ' + ten[(i + k * 4) % ten.length]); });
+    D.hsInfo = D.hsInfo || {};
+    ['10A1', '11A2', '12A1'].forEach((l, k) => { if (!(D.students[l] || []).length) {
+      D.students[l] = Array.from({ length: 16 }, (_, i) => ho[(i * 5 + k) % ho.length] + ' ' + dem[(i * 3 + k) % dem.length] + ' ' + ten[(i + k * 4) % ten.length]);
+      D.hsInfo[l] = {}; D.students[l].forEach((n, i) => { D.hsInfo[l][n] = { ns: p2(1 + i) + '/0' + (1 + i % 9) + '/' + (2010 - k), ph: n.split(' ')[0] + ' Văn ' + ['Ba', 'Bốn', 'Năm', 'Sáu'][i % 4], sdt: '09' + String(10000000 + i * 1234567 + k * 7).slice(0, 8) }; });
+    } });
     if (!D.school.hieuTruong) D.school.hieuTruong = 'Nguyễn Văn Hiệu';
     if (!D.school.biThuDoan) D.school.biThuDoan = 'Võ Thị Thu Đoàn';
-    commit('Đã nạp dữ liệu mẫu: 6 tài khoản, 3 lớp, 48 học sinh.');
+    commit('Đã nạp dữ liệu mẫu: 6 tài khoản, 3 lớp, 48 học sinh có thông tin phụ huynh.');
   };
 }
+// Nhắc tải sao lưu ở chế độ dùng thử
+function backupReminder() {
+  if (S.mode !== 'local' || !S.me || !S.me.admin) return;
+  const p = S.cfg.rules.backup.period; if (p === 'off') return;
+  let last = ''; try { last = localStorage.getItem(BAK_KEY) || ''; } catch (e) { }
+  const days = { day: 1, week: 7, month: 30 }[p];
+  if (!last || Date.now() - Date.parse(last) > days * 864e5) toast('Đã đến kỳ sao lưu: vào Cấu hình → Dữ liệu → Tải file sao lưu.');
+}
+
 
 /* ===================================================================
  * KHỞI ĐỘNG
